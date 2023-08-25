@@ -14,6 +14,7 @@ Created by EltanceX via Node.js
 
 >Join our telegram: [Rimspace Community](https://t.me/+gceVNR56r5YxZGM1)
 >
->Author email: annularwind@outlook.com
+>Author's email: annularwind@outlook.com
 >
->QQ group: 753909207
+>Join our QQ group: 753909207
+>
