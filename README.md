@@ -2,7 +2,7 @@
 
 Rimspace - Minecraft Bedrock Websocket open-source software
 
-Created by EltanceX via Node.js
+Created by EltanceX via Node.js  2022-7-12 -- 2022-11-23
 
 *Minecraft BE versions after 0.17 are all supported.*
 
