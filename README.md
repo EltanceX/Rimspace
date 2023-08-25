@@ -12,7 +12,7 @@ Created by EltanceX via Node.js
 
 ### Contact
 
->Join our telegram: [Rimspace Community](https://t.me/+gceVNR56r5YxZGM1)
+>Join our telegram: https://t.me/+gceVNR56r5YxZGM1
 >
 >Author's email: annularwind@outlook.com
 >
