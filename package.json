@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "bezier-curve": "^1.0.0",
+    "colors": "^1.4.0",
+    "cookie-parser": "^1.4.6",
+    "cpu-stat": "^2.0.1",
+    "express": "^4.18.1",
+    "get-pixels": "^3.3.3",
+    "md5": "^2.3.0",
+    "string-pixel-width": "^1.10.0",
+    "urlencode": "^1.1.0",
+    "ws": "^8.8.0"
+  }
+}

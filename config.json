@@ -1,0 +1,44 @@
+// Rimspace Configuration File
+{
+    "port": 3000, //Rimspace Server Port
+    "language": ["default", "en-us"], //Language ( Rimspace/data/lang/ )
+    //Language priority: increasing from left to right
+
+    "diskLog": true, //Whether to log on disk (Path: Rimspace/logs/ )
+
+
+
+    //Prefix with "_" or options under debug mean Internal debugging options.
+    //If you do not know its function, please do not change any of this kind of options or rimspace may not work properly !
+
+    "maxError": -1, //Maximum allowable error reporting times (If it exceeds, it will exit automatically)
+    "safety": { //Security settings
+        "_ClientSimpleVerification": true,
+        "_LoginInterval": 1000,
+        "mcwsIpv4": [ //Allowed game IPv4 addresses ( * Represents any)
+            "*.*.*.*"
+        ],
+        "webIpv4": [ //Allowed web IPv4 addresses ( * Represents any)
+            "127.*.*.*",
+            "0.0.0.0",
+            "169.*.*.*"
+        ],
+        "mcwsIpv6Enable": true, //Whether game IPv6 address access is allowed
+        "webIpv6Enable": false //Whether web IPv6 address access is allowed
+    },
+    "ConsolePassword": "123456", //Web console password
+    "maxPosEach": 100, //Maximum number of coordinates each player
+    "repairStorageLength": 65535, //Maximum saved quantity of 'repair' command
+    "repairRetryInterval": 333, //Repair command automatic retry interval (ms)
+    "importFollowInterval": 32, //Import command follow mode interval
+    "pluginPermission": {
+        "SYSTEM": false
+        //⚠️ Warning: This option allows plug-ins to have system level permissions
+        //⚠️ It is dangerous to grant system permissions to untrusted plug-ins
+        //⚠️ Please do not arbitrarily enable it unless you know what you are doing
+    },
+    "debug": {
+        "cmdTimeout": 180000,
+        "languageWarn": true
+    }
+}

@@ -1,0 +1,143 @@
+If you encounter any problems in the process of using rimspace
+or have any suggestions or suggestions on the development of rimspace
+please send an email to our official mailbox: annularwind@outlook.com
+Thank you for your support for rimspace ~
+
+v0.1.0.2 []
+    1.现在位于一格宽的区域内使用'pos add'命令不再会卡进墙里
+	2.优化了'pos add'命令的执行速度
+	3.新增circle命令，使用'circle --help'查看该命令的详细帮助
+	4.新增ellipse命令，使用'ellipse --help'查看该命令的详细帮助
+	5.新增visitor命令，在登入Rimspace前执行该命令可进入访客模式(测试阶段)
+v0.1.0.1 [2022.11.5]
+    1.新增ping命令，使用'ping --help'查看该命令的详细帮助
+    2.新增agent命令，使用'agent --help'查看该命令的详细帮助
+    3.新增closechat命令，使用'closechat --help'查看该命令的详细帮助
+    4.新增listd命令，使用'listd --help'查看该命令的详细帮助
+    5.新增querytarget命令，使用'querytarget --help'查看该命令的详细帮助
+    6.新增close命令，使用'close --help'查看该命令的详细帮助
+    7.修复mcfunction在执行setblock命令时出现的错误
+    8.修复windows下控制台km命令报错的问题
+    9.修复语言文件的层级读取错误
+    10.取消import命令的--follow跟随模式选项，替换为import的follow子命令
+    11.新增插件func - rimspace.func.parseCmdPos
+    12.新增插件Player Method - Player.wexec
+v0.1.0.0 [2022.11.1] 万圣节更新
+	1.新增彩蛋:)
+	2.新增插件系统
+	  - 更多插件相关信息请查阅帮助文档: https://rimspace.github.io/plugin
+	3.针对全文件的结构进行了优化
+	4.将cps的指示数值更改为最新3s的速率均值
+	5.修复由于玩家非正常退出导致Rimspace崩溃的问题
+	6.新增task display的always选项
+	7.现在任务ID将在空闲时定期重置
+	8.新增path文件路径命令，使用'path --help'查看该命令的详细帮助
+	9.新增import path子命令，使用'import --help'查看该子命令的详细帮助
+	10.新增mid path子命令，使用'mid --help'查看该子命令的详细帮助
+	11.新增pixel path子命令，使用'pixel --help'查看该子命令的详细帮助
+	12.新增pos tp子命令，使用'pos --help'查看该子命令的详细帮助
+	13.新增import导入命令的【schematic】文件格式支持
+	14.优针对schematic格式的大文件解析进行了优化
+	15.新增结构导入命令(import)速度模式【实验性功能】: speedx
+	  - 现在.rmst格式已默认应用speedx模式
+	  -- 将.rmst格式文件的安全导入速度上限由1000提升至2k
+	  -- 现在.rmst格式文件的导入速度精准度得到大幅提升
+	16.新增rmst格式导入命令(import)的--skip选项
+	  格式: import [FileName].rmst --skip=[Percentage]
+	  该选项允许跳过部分结构以改变导入的起始位置
+	17.新增bdx格式导入命令(import)的--skip选项
+	18.新增mcfunction格式导入命令(import)的--skip选项
+	19.新增sd格式导入命令(import)的--skip选项
+	20.新增schematic格式导入命令(import)的--skip选项
+	21.修复了repair命令产生的多种意外报错问题
+	22.修改了控制台命令的格式，为所有控制台命令添加独立的help选项
+	23.新增subtitle滚动颜色字幕命令，使用'subtitle --help'查看该命令的详细帮助
+	24.现在在解压Rimspace压缩包后会生成教程手册以及更新日志
+	25.修复了由于文件格式导致的语言文件读取错误问题
+	26.language语言文件已支持json格式
+	   现在语言文件的加载将优先尝试读取json格式
+	27.新增tips :)
+	28.新增import命令的--follow选项
+	29.新增十余份自带的midi文件和schematic文件
+	30.修复了导入bdx大文件时存在的内存异常消耗问题
+	31.压缩了主文件的体积
+	32.新增abort命令(控制台窗口)
+v0.0.2.4 [2022.10.4]
+	1.现在在控制台使用rc命令会同时刷新语言文件
+	2.新增pos preview预览命令，使用'pos --help'查看该命令的详细帮助
+	3.新增track追踪器命令，使用'track --help'查看该命令的详细帮助
+v0.0.2.3 [2022.10.2]
+	1.Web控制台新增replay功能
+	2.新增replay电影视角回放功能，使用'replay --help'查看该命令的详细帮助
+	3.新增lineto线条绘制功能，使用'lineto --help'查看该命令的详细帮助
+	4.修复了部分语言错误
+	5.现在diskLog默认为启用状态
+v0.0.2.2 [2022.10.1]
+	1.支持语言文件(存储路径: Rimspace/data/lang/ )
+	现在您可以自定义喜欢的语言或语种
+	2.支持语言优先级，可在配置文件中进行设置
+	3.结构导出功能已支持.bdx格式，使用'export --help'查看该命令的详细帮助
+	4.新增login2命令, 格式: login2 <用户名> <密码>
+	现在可以使用用户名进行登录了
+	5.更新了配置文件中的部分内容
+v0.0.2.1 [2022.9.12]
+	1.美化了游戏内帮助页面的颜色
+	2.新增游戏内repair命令
+	  使用'repair --help'(或 'repair -h' 或 'repair help')查看该命令的详细帮助
+	  该命令旨在修复导入结构时由于非正常因素而导致的方块丢失问题，支持当前版本中所有功能
+	3.修复了在导入sd格式文件时无法正常读取方块数据值的问题
+	4.修复了当坐标列表中没有任何坐标时仍使用'pos set'会提示坐标保存成功但实际失败的问题
+v0.0.2.0 [2022.9.11]
+	1.新增建筑结构的导入对于.sd格式文件的支持
+	2.新增建筑结构的导出对于.mcfunction格式的支持
+	3.修复了在执行import命令导入不存在文件时不提示报错且任务栏卡住的问题
+v0.0.1.9 [2022.9.10]
+	1.新增控制台stop命令
+	2.新增控制台exit命令
+	3.新增控制台quit命令
+	4.新增游戏内感叹号世界聊天
+	5.新增worldchat命令
+	6.修复了由于非正常退出导致账号无法再次登陆的问题
+v0.0.1.8 [2022.8.30]
+	1.修复了像素画区块大小自定义设置出错的问题
+v0.0.1.7 [2022.8.28]
+	1.修复了上一版本像素画指令无法触发的问题
+v0.0.1.6 [2022.8.28]
+	1.新增.bdx格式导入支持
+	2.优化了.bdx导入的运作方式
+	3.修复了title偶尔显示不正常的问题
+v0.0.1.5 [2022.8.26]
+	1.新增mcfunction格式导入支持
+	2.新增version命令
+	3.优化了mcfunction命令的执行
+	4.修复了web界面中set pos菜单中传送按键失效的问题
+	5.修复了web界面的文件管理器快捷导入mid文件和rmst文件无效的问题
+	6.新增web界面的文件管理器快捷导入mcfunction/png/gif格式的支持
+	7.修复了部分翻译错误
+	8.现在在使用登陆命令(login)后也会保存自动登陆信息
+	9.现在在启动Rimspace后会自动更新窗口标题
+v0.0.1.4 [2022.8.24]
+	1.新增MinecraftBE全版本支持，旧版MC连接时将自动向下兼容
+	2.修复了在启用实验性游戏内容时音乐播放不正常的问题
+	3.修复了在退出Rimspace时乱码刷屏的问题
+	4.增加玩家连接Rimspace时的提示消息
+	5.修复了登陆超时时的显示异常问题
+	6.修改了其他提示信息
+v0.0.1.3 [2022.8.22]
+	1.新增像素画X / Y / Z方向绘制的支持
+v0.0.1.2 [2022.8.21]
+	1.新增cps(命令执行频率)显示
+	2.修复导出时出现的文件读取错误问题
+	3.新增像素画自定义高斯模糊功能
+	4.新增数种像素画滤镜功能
+	5.修复了像素画导入时部分方块无法被放置的问题
+	6.新增像素画GIF格式支持
+v0.0.1.0 [2022.8.19]
+	1.修复CPU速度读取失败导致无法启动的问题
+	2.新增像素画功能
+	3.优化像素画算法，无需等待漫长的解析时间
+	4.优化像素画生成方式，修改为区块式生成
+v0.0.0.1 [2022.8.15]
+	-
+beta 0.0.0 [2022.7.17 - 2022.8.14]
+	-
