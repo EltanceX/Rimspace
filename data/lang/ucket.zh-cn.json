@@ -1,6 +1,6 @@
 {
 	"lang header": {
-		"version": "0.1.0.0",
+		"version": "0.1.0.2",
 		"translator": "UCKET"
 	},
 	"start": {
@@ -39,6 +39,14 @@
 	},
 	"plugin": {
 		"load": "加载",
+		"success":{
+			"circle": {
+				"circle face": "生成圆平面成功",
+				"cirque": "生成圆环成功"
+			},
+			"ellipse": "生成椭圆成功"
+
+		},
 		"error": {
 			"manifest": "加载失败",
 			"fail": "加载插件失败",
@@ -52,6 +60,7 @@
 			"title": "帮助页面",
 			"detail tip": "详细帮助请使用 '[命令] -h', '[命令] --help'",
 			"list": "所有控制台命令列表",
+			"list_command": "列出所有连接到  Rimspace 服务的玩家",
 			"kick": "踢出玩家",
 			"kickall": "强制踢出所有玩家",
 			"ip": "ip地址信息",
@@ -144,18 +153,6 @@
 				"kickall": "强制踢出所有连接到rimspace的玩家"
 			}
 		},
-		"exec": {
-			"help": {
-				"title": "exec *帮助页面",
-				"exec": "以已绑定玩家的身份在游戏内运行一条游戏命令"
-			}
-		},
-		"wexec": {
-			"help": {
-				"title": "wexec *帮助页面",
-				"wexec": "以已绑定玩家的身份在游戏内运行一条Rimspace命令"
-			}
-		},
 		"ol": {
 			"help": {
 				"title": "ol *帮助页面",
@@ -206,6 +203,24 @@
 				"status": "显示Rimspace服务器状态"
 			}
 		},
+		"exec": {
+			"help": {
+				"title": "exec *帮助页面",
+				"exec": "以已绑定玩家身份执行游戏命令"
+			},
+			"error": {
+				"not bound": "您必须先绑定一名玩家 (帮助页面：exec --help)"
+			}
+		},
+		"wexec": {
+			"help": {
+				"title": "wexec *帮助页面",
+				"wexec": "以已绑定玩家的身份在游戏内运行一条Rimspace命令"
+			},
+			"error": {
+				"not bound": "无玩家连接，请使用 'wexec --help' 查看帮助"
+			}
+		},
 		"rc": {
 			"help": {
 				"title": "rc *帮助页面",
@@ -244,7 +259,15 @@
 			"replay": "回放",
 			"track": "跟踪目标",
 			"path": "加载路径并获取文件 ID",
-			"subtitle": "创建 §c滚§6动§e标§a题"
+			"subtitle": "创建 §c滚§6动§e标§a题",
+			"agent": "机器人",
+			"closechat": "关闭聊天栏",
+			"querytarget": "查看玩家详细信息",
+			"listd": "查看玩家详细列表",
+			"close": "从 Rimspace 断开连接",
+			"ping": "Ping 远程地址",
+			"circle": "生成圆",
+			"ellipse": "生成椭圆"
 		},
 		"task": {
 			"help": {
@@ -366,7 +389,7 @@
 				"option": "mid   *参数",
 				"-p": "文件路径",
 				"-t": "曲目进度",
-				"note": "注意: §f若播放无声音，请前往市场手动下载缺失的官方音乐包！"
+				"note": "! 注意: §f使用此功能前，请确保已安装官方音乐包！"
 			},
 			"no file": "您必须指定要播放的文件",
 			"not found": "未找到文件",
@@ -414,7 +437,9 @@
 				"option": "import *参数",
 				"-p": "设置路径",
 				"-s": "指定导入百分比",
-				"-f": "导入时自动跟随"
+				"-f": "导入时自动跟随",
+				"follow on": "开启跟随模式",
+				"follow off": "关闭跟随模式"
 			},
 			"speed": {
 				"invalid number": "无效数字",
@@ -429,7 +454,8 @@
 			"unsupport": "不支持的文件格式",
 			"error": {
 				"parameter": "无效参数, 请使用 'import --help'查看帮助",
-				"parse": "解析过程中出现意外错误"
+				"parse": "解析过程中出现意外错误",
+				"number": "无效数字"
 			},
 			"skip": {
 				"error": {
@@ -560,10 +586,13 @@
                 "tip" : "提示：最大存储限制可以在配置文件中更改"
 			},
 			"range": "修复范围",
+			"del": "删除范围",
 			"complete": "修复任务完成",
 			"error": {
 				"data": "读取数据时出错,任务中断"
-			}
+			},
+			"total": "总计",
+			"failed": "失败"
 		},
 		"replay": {
 			"help": {
@@ -647,8 +676,89 @@
 			},
 			"error": {
 				"parameter": "无效参数, 请使用 'subtitle --help' 查看帮助",
-				"color": "颜色不能为空！"
+				"color": "颜色不能为空 !"
+			},
+			"color": "颜色已保存"
+		},
+		"agent": {
+			"help": {
+				"title": "agent  *帮助页面",
+				"option": "agent  *参数",
+				"-h": "查看帮助页面"
+			}
+		},
+		"closechat": {
+			"help": {
+				"title": "closechat  *帮助页面",
+				"option": "closechat  *参数",
+				"-h": "查看帮助页面"
+			},
+			"closechat": "关闭当前聊天栏"
+		},
+		"querytarget": {
+			"help": {
+				"title": "querytarget  *帮助页面",
+				"option": "querytarget  *参数",
+				"-h": "查看帮助页面"
+			}
+		},
+		"listd": {
+			"help": {
+				"title": "listd  *帮助页面",
+				"option": "listd  *参数",
+				"-h": "查看帮助页面"
+			}
+		},
+		"close": {
+			"help": {
+				"title": "close  *帮助页面",
+				"option": "close  *参数",
+				"-h": "查看帮助页面",
+				"-f": "强制断开与 Rimspace 服务器的连接",
+				"disconnect": "断开与 Rimspace 服务器的连接"
+			},
+			"closing": "The connection to the Rimspace server is about to be lost..."
+		},
+		"ping": {
+			"help": {
+				"title": "ping  *帮助页面",
+				"option": "ping  *参数",
+				"-h": "查看帮助页面",
+				"-t": "对指定的主机执行 ping 操作，直到停止。",
+				"ping": "对远程主机执行 ping 操作"
+			},
+			"error": {
+				"parameter": "无效参数！"
+			}
+		},
+		"ellipse": {
+			"help": {
+				"title": "ellipse  *帮助页面",
+				"option": "ellipse  *参数",
+				"ellipse": "生成椭圆",
+				"-h": "查看帮助页面",
+				"-f": "设置椭圆的朝向 (默认: y)",
+				"-r": "设置椭圆的旋转角度 (范围: 0 ~ 360) (默认: 0)",
+				"-p": "指定坐标 ID (默认: 0)"
+			},
+			"error": {
+				"coordinate": "坐标参数无效，请使用 'pos add' 添加坐标或重新设置坐标",
+				"number": "参数无效，半长轴和半短轴应为数字",
+				"rotate": "参数错误，旋转角度应为数字",
+				"range": "参数错误，旋转角度的范围应介于 0 到 360 之间"
+			},
+			"complete": "生成完成"
+		},
+		"circle": {
+			"help": {
+				"title": "circle  *帮助页面",
+				"option": "circle  *参数",
+				"circle": "生成圆",
+				"-h": "查看帮助页面",
+				"-f": "设置圆的朝向 (默认: y)",
+				"-r": "设置椭圆的旋转角度 (范围: 0 ~ 360) (默认: 0)",
+				"-p": "指定坐标 ID (默认: 0)"
 			}
 		}
-	}
+	}	
 }
