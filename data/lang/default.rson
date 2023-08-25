@@ -1,0 +1,635 @@
+*// Rimspace Language File
+*//    === en-us ===
+[lang header]
+>   [version] 0.1.0.2
+
+[start]
+>   [finish] Startup completed
+>   [listen] RimSpace Websocket Server Listening on port
+>   [help] Type 'help' to see help page.
+>   [ip -a] Type 'ip' to view all of your addresses.
+>   [webListen] Web Service Listening on
+
+[login]
+>   [fail] Automatic login failed, please try again
+>   [success] Successfully Login, Your login data was saved in 'user.json'.
+>   [welcome] Welcome to Rimspace
+>   [error]
+>>      [emptyfile] The file 'user.json' is empty, please use the command to log in manually
+>>      [ECONNREFUSED] Retry: Unable to establish a connection with the public file server
+>>      [lost] The connection to the login authentication server has been lost.
+>>      [pwd length] The length of the password ranges from 3 to 20 !
+>>      [name length] The length of the name ranges from 3 to 20 !
+
+[web service]
+>   [error]
+>>      [static] Error while loading web static pages !
+
+[exit]
+>   [prompt]
+>>      [stop] Stopping server...
+>>      [disconnect] Disconnecting clients...
+>>      [ingame] The remote host forced an existing connection to be closed.
+>>      [close websocket] Closing websocket...
+>>      [save data] Runtime Data Saved.
+>>      [stopped] Server stopped.
+
+[plugin]
+>   [load] Loading
+>   [error]
+>>      [manifest] Fail to load
+>>      [fail] Fail to load plugin
+>>      [lang] The language dependency of the plug-in cannot be found
+>>      [main] Fail to find PLUGIN file
+>>      [runtime] An error occurred while loading the plugin
+
+[console]
+>   [help]
+>>      [title] HELP PAGE
+>>      [detail tip] For detailed help, please use '[cmd] -h', '[cmd] --help'
+>>      [list] List of all console commands
+>>      [list_command] List all players on the Rimspace server
+>>      [kick] Kick a player
+>>      [kickall] Force Kick all players
+>>      [ip] Address information
+>>      [bind] Player bind
+>>      [status] Server Status
+>>      [version] Server Version
+>>      [km] Keyboard Mode
+>>      [exec] Run game command as player bound
+>>      [wexec] Tigger ws command as player bound
+>>      [rc] Reload config.json
+>>      [ol] Online
+>>      [stop] Stop Rimspace Server
+>   [km]
+>>      [help]
+>>>         [expound] Enable Keyboard Mode
+>>>         [--help] Help Page
+>>>         [--player] Specify the operation object(Default: @s)
+>>      [operation set] Operation Player was set to
+>>      [start]
+>>>         [operation] Operation: WASD NM ↑↓←→ / C
+>>>         [target] Target Player
+>>>         [exit] Press ctrl+c to exit keyboard mode.
+>>      [off] Keyboard mode off.
+>>      [on] Keyboard Mode on.
+>>      [error]
+>>>         [bind] No player bound!
+>>>         [option] Invalid option. See 'km -h' for help information.
+>   [ip]
+>>      [help]
+>>>         [--help] Help Page
+>>      [title] All available local addresses
+>>      [tip] List local ip
+>   [list]
+>>      [help]
+>>>         [expound] List players online
+>>>         [list] List all players on server
+>>>         [detail] List player details
+>>>         [help] Help page
+>>>         [-h] Help page
+>>      [error]
+>>>         [option] Invalid option. See 'list -h' for help information.
+>   [bind]
+>>      [help]
+>>>         [bind] Bind a player
+>>>         [expound] Bind the last connected
+>>>         [view] View bound player
+>>>         [unbind] Unbind the current player
+>>>         [help] Help page
+>>>         [-h] Help page
+>>      [error]
+>>>         [not exist] doesn't exist!
+>>>         [not bound] There is no player bound.
+>>>         [no connection] Last connection is invalid. Use 'bind --help' for help information.
+>>>         [option] Invalid option. Use 'bind -h' for help information.
+>>      [bound last] Bound last connection
+>>      [unbound all] Unbound all.
+>>      [auto unbind] Auto unbound
+>   [kick]
+>>      [force kicked] Force Kicked
+>>      [not exist] doesn't exists!
+>>      [help]
+>>>         [kick] Kick out a player from rimspace
+>>>         [--help] Help Page
+>>>         [--bound] Kick player bound
+>>>         [--force] Force Kick Mode
+>>      [error]
+>>>         [bound] There is no player bound !
+>>>         [option] Invalid option. See 'kick -h' for help information.
+>>>         [exist] doesn't exist!
+>>      [kick] Trying to kick... (If useless please use '--force')
+>   [kickall]
+>>      [help]
+>>>         [title] kickall *help page
+>>>         [kickall] Forcibly kick out all players connected to rimspace
+>   [ol]
+>>      [help]
+>>>         [title] ol *help page
+>>>         [help] Help Page
+>>>         [info] Show User Info
+>>>         [rename] Rename your account name (20 Silver Coins)
+>>>         [pwd] Reset password (Once every an hour)
+>>      [rename]
+>>>         [error] The user name should be within 4 to 20 characters
+>>>         [success] Your name has been renamed to
+>>>         [cost] Rename cost
+>>      [pwd]
+>>>         [error] The user password should be within 4 to 20 characters
+>>>         [success] Password modified successfully
+>>>         [saved] Password saved to ./user.json
+>   [reg]
+>>      [illegal length] The user name and password should be within 4 to 20 characters
+>>      [connection error] Not connected to server
+>>      [try again] Registration failed, please try again
+>>      [success] Successfully registered, Your uuid
+>>      [tip] Your login information has been stored in ./user.json
+>   [login]
+>>      [illegal length] The user name and password should be within 4 to 20 characters
+>>      [connection error] Not connected to server
+>>      [fail] Login failed, please try again
+>>      [success] Successfully Login, Your uuid
+>>      [welcome] Welcome to Rimspace
+>>      [parameter error] Invalid parameter
+>   [help2]
+>>      [tip] ---- Login Interface ----
+>>      [reg] Register a new account
+>>      [login] Log in to the existing account
+>>      [login2] Log in to the existing account
+>>      [warn] The user name and password should be within 4 to 20 characters
+>>      [exit] Exit Rimspace
+>>      [error] You haven't logged in yet. Run the help command to view the help
+>   [stop] Stop Rimspace Server
+>   [status]
+>>      [help]
+>>>         [title] status *help page
+>>>         [status] Show Rimspace server status
+>   [exec]
+>>      [help]
+>>>         [title] exec *help page
+>>>         [exec] Execute the game command as the bound player
+>>      [error]
+>>>         [not bound] You must BIND a player in advance. (HELP: exec --help)
+>   [wexec]
+>>      [help]
+>>>         [title] wexec *help page
+>>>         [wexec] Execute the rimspace command as the bound player
+>>      [error]
+>>>         [not bound] You must BIND a player in advance. (HELP: wexec --help)
+>   [rc]
+>>      [help]
+>>>         [title] rc *help page
+>>>         [rc] Reload Rimspace Config
+>>      [complete] Reload config.json complete
+
+
+
+[game]
+>   [welcome]
+>>      [0] §r§f§l§2Connected to the server: §aRS.WS
+>   [init]
+>>      [cpu] Monitor server CPU data
+>>      [mem] Monitor server Latency data
+>>      [complete] Complete.
+>   [help]
+>>      [title] Help page
+>>      [task] Task system
+>>      [ol] Online System
+>>      [exec] Execute instructions as a player
+>>      [time] Show current time
+>>      [pos] Position system
+>>      [mid] MIDI music
+>>      [export] Export a structure
+>>      [exportTip] Support Type: §6Mcfunction §eBdx §aRmst
+>>      [import] Import a structure
+>>      [importTip] Support Type: §6Mcfunction §eBdx §5Schematic §3Sd §bRmst
+>>      [pixel] Generate a pixel picture
+>>      [version] Show Rimspace Version
+>>      [worldchat] World Chat
+>>      [repair] Fix the command that failed to import
+>>      [tip] For more detailed help, please use '[cmd] --help'
+>>      [lineto] Drawing of line segments
+>>      [replay] Playback path
+>>      [track] Track a target
+>>      [path] Load path and get File ID
+>>      [subtitle] Create a §cr§6o§el§al§3i§bn§5g §cc§6a§ep§at§3i§bo§5n
+>>      [agent] Agent
+>>      [closechat] Close chat bar
+>>      [querytarget] Advanced player information
+>>      [listd] Advanced player list
+>>      [close] Disconnect from Rimspace Server
+>>      [ping] Ping a remote address
+>>      [circle] Draw a circle
+>>      [ellipse] Draw an ellipse
+>   [task]
+>>      [help]
+>>>         [title] task  *help page
+>>>         [break] Break a task
+>>>         [bkall] Break all tasks
+>>>         [pause] Status task switching
+>>>         [display] Toggle display mode
+>>>         [-debug] Debug mode
+>>>         [tip] TaskTitle>> dps: Title refresh rate; cps: Command execution frequency
+>>>         [option] task *option
+>>      [display]
+>>>         [mode]
+>>>>            [0] Normal
+>>>>            [1] Never
+>>>>            [2] Always
+>>>         [show] Task display mode
+>>      [break]
+>>>         [success] Removed task
+>>>         [fail] Fail to find task
+>>      [bkall]
+>>>         [success] Removed
+>>      [pause]
+>>>         [state]
+>>>>            [0] Sleeping
+>>>>            [1] Running
+>>>         [fail] Fail to find task
+>>      [invalid option] Invalid option. See <task -h> for help information.
+>>      [dazzle]
+>>>         [on] §cD§6a§ez§az§3l§be §5M§co§6d§ee §aO§3N
+>>>         [off] Dazzle Mode Off
+>   [exec]
+>>      [help]
+>>>         [title] exec  *help page
+>>>         [exec] Execute a cmd externally.
+>>>         [option] exec *option
+>>>         [-n] No Echo Mode
+>   [pos]
+>>      [help]
+>>>         [title] pos  *help page
+>>>         [help] Help page
+>>>         [follow] Follow mode
+>>>         [add] Add pos at current pos
+>>>         [set] Set pos data
+>>>         [tp] Tp to specified coordinate
+>>>         [rm] Remove a pos
+>>>         [rmall] Remove ALL coordinates saved
+>>>         [list] Position List
+>>>         [save] Save pos set on disk
+>>>         [load] Load pos set from disk
+>>>         [delall] Delete all positions saved on disk
+>>>         [option] pos   *options
+>>>         [-h] Help page
+>>>         [point] Preview the coordinates of points saved
+>>>         [line] Preview the coordinates of line
+>>>         [-p] Assign particles
+>>      [incorrect quantity] There is no position saved!
+>>      [particle] Preview particle
+>>      [coor error] The number of coordinates is less than 2 !
+>>      [save]
+>>>         [fail] Currently saved coordinates are empty
+>>      [load]
+>>>         [fail] Cannot find pos
+>>>         [loaded] positions loaded
+>>>         [parameter error] Missing parameter: coordinate name
+>>      [delall] Deleted all positions saved on disk
+>>      [follow]
+>>>         [not support] The current game version does not support the change function !
+>>>         [stateT] Pos follow state
+>>>         [state]
+>>>>            [on] on
+>>>>            [off] off
+>>>         [tip] Pos Follow Mode on, shoot arrows to the coordinates of your location\nType again to make it off.
+>>>         [upper limit] Quantity exceeds the maximum limit: 
+>>      [add] Quantity exceeds the maximum limit:
+>>      [set]
+>>>         [overwrite] has been overwritten
+>>>         [changed] Coordinate changed
+>>>         [invalid] Invalid coordinate
+>>>         [not found] Cannot find ID
+>>      [rm]
+>>>         [deleted] Deleted coordinate
+>>>         [deleted last] Deleted the last coordinate
+>>      [rmall] Deleted all coordinates saved
+>>      [list] List of saved coordinates
+>>      [invalid option] Invalid option. See <pos -h> for help information.
+>>      [tp]
+>>>         [to] About to be transferred to
+>>>         [teleported] Teleported to
+>>>         [error]
+>>>>            [exist] doesn't exist !
+>   [mid]
+>>      [help]
+>>>         [title] mid  *help page
+>>>         [help] Help page
+>>>         [midi] Play midi (Default path: ./public/)
+>>>         [path] Play midi according to File ID
+>>>         [option] mid   *options
+>>>         [-p] File Path
+>>>         [-t] Track count
+>>>         [note] §fIf there is no sound, please install the missing official music package !
+>>      [no file] You must specify a file to play
+>>      [not found] File not found
+>>      [bad] Bad midi file
+>>      [loaded] Midi loaded
+>>      [filename] FileName
+>>      [copyright] Copyright
+>>      [name] CurrName
+>>      [track] Tracks
+>>      [time] Time
+>>      [complete] One track playback completed.
+>   [export]
+>>      [help]
+>>>         [title] export  *help page
+>>>         [speed] Set speed (block/s)
+>>>         [export] Export a structure
+>>>         [option] export *option
+>>>         [-s] Set speed
+>>>         [-t] Set the exported file type (Default: rmst)
+>>>         [tip] Support Type: §6Mcfunction §eBdx §aRmst
+>>      [speed]
+>>>         [invalid number] Invalid number
+>>>         [invalid range] Invalid number
+>>>         [success] Export speed was set to
+>>      [type error] Unsupported Type
+>>      [name error] The file already exists, please change the file name
+>>      [pos error] Invalid coordinate pointing input
+>>      [block error] Fail to access the block at
+>>      [file saved] File was saved to
+>>      [completed] Export operation completed
+>>      [error]
+>>>         [parameter] Invalid parameter, Use 'export --help' to view help page.
+>   [import]
+>>      [help]
+>>>         [title] import  *help page
+>>>         [speed] Set speed (block/s) (range: 0~2k)
+>>>         [import] Import a structure
+>>>         [path] Import structure according to File ID
+>>>         [tip] Supported file type: §o§6Mcfunction §eBdx §5Schematic §3Sd §bRmst
+>>>         [option] import *option
+>>>         [-p] Set path
+>>>         [-s] Specify the percentage of imports
+>>>         [-f] Automatically follow on import
+>>>     [follow on] Turn on follow mode
+>>>     [follow off] Turn off follow mode
+>>      [speed]
+>>>         [invalid number] Invalid number
+>>>         [invalid range] Invalid number
+>>>         [success] Import speed was set to
+>>      [not found] File Not Found
+>>      [pos error] Invalid position
+>>      [complete] Import complete
+>>      [bad] Bad path
+>>      [format error] Wrong or corrupt file format !
+>>      [unsupport] Unsupported file format
+>>      [error]
+>>>         [parameter] Invalid parameter, Use 'import --help' to view help page.
+>>>         [parse] An unexpected error occurred during parsing
+>>>         [number] Invalid number
+>>      [skip]
+>>>         [error]
+>>>>            [percentage] Skip percentage should be within 0% to 100% !
+>>>         [from] Structure import will start from
+>   [ol]
+>>      [help]
+>>>         [title] ol  *help page
+>>>         [list] List all available file type
+>>>         [listx] List all files under a category
+>>>         [signin] Sign in
+>>>         [buy] Purchase files
+>>>         [info] Show your account info
+>>>         [upload] Upload a file.(Receive different silver coins by upload)
+>>>         [download] Download a purchased file
+>>>         [delete] Delete uploaded files
+>>>         [delete tip] Deleting a file will deduct double silver coins
+>>>         [price] Modify the purchase price
+>>>         [option] ol *option
+>>>         [-p] File Path
+>>      [server error] Server error
+>>      [parameter error] Invaild parameter
+>>      [no file] There are no files in the current classification
+>>      [type error] Invaild type ! Use 'ol list' to view all available type
+>>      [invalid option] Invalid option. See <ol -h> for help information.
+>>      [list] All types on file server
+>>      [buy] Purchase §asucceeded§f, silver coin cost
+>>      [name error] Invalid File Name
+>>      [uname error] Invalid Upload Name
+>>      [name length error] The maximum length of the file name is 30
+>>      [des length error] The maximum file description length is 50
+>>      [file corruption] Error when uploading: File corruption
+>>      [format error] Wrong or corrupt file format !
+>>      [unsupported format] Unsupported file format
+>>      [upload]
+>>>         [start] Upload start, Please wait a few seconds...
+>>>         [success] Successfully uploaded.
+>>>         [reward] You got the upload reward
+>>>         [price] The price of file you uploaded was automatically set to
+>>>         [tip] To change the price, please use command 'ol price'
+>>      [file exists] Download cancelled, a file with the same name was detected
+>>      [download]
+>>>         [start] Download has started, please wait a few seconds...
+>>>         [success] Successfully downloaded.
+>>>         [save] File was saved to
+>>      [delete] File deleted §asuccessfully§f, Silver coin deduction
+>>      [price]
+>>>         [range error] Price cannot be less than 0 or greater than 10000
+>>>         [success] Price modified successfully
+>>      [signin] Signin succeeded, Silver Coin
+>   [pixel]
+>>      [help]
+>>>         [title] pixel  *help page
+>>>         [pixel] Draw a pixel picture
+>>>         [path] Draw pixel picture according to FileID
+>>>         [speed] Set the generation speed of pixel picture ( block/s )
+>>>         [option] pixel   *options
+>>>         [-p] File Path (Default: ./public/)
+>>>         [-o] Set pixel generate orientation
+>>>         [-i] Specify coordinate index
+>>>         [-m] Set build mode
+>>>         [support] Support: normal, contrast, pale, purityc, disorder, hell
+>>>         [-g] Gauss Mode
+>>>         [-r] Set gauss blur radius (gauss mode only, Default: 3)
+>>>         [-s] Set gauss blur sigma (gauss mode only, Default: 1)
+>>>         [-f] Automatically follow progress
+>>>         [-c] Set the block size generated by pixel drawing(Default: 32)
+>>>         [tip] For more information about the 'pixel mode', please use command 'pixel mhelp'
+>>      [mhelp]
+>>>         [title] Pixel '--mode' help
+>>>         [support] Support: §6normal, contrast, pale, gauss, purityc, disorder, hell
+>>>         [normal] Generate a normal pixel picture
+>>>         [contrast] Generate an inverted pixel picture
+>>>         [pale] Generate a black and white pixel picture
+>>>         [puprityc] Generate a single pixel picture with inverted color
+>>>         [disorder] Generate a pixel picture with disordered colors
+>>>         [hell] Generate a hellish pixel picture
+>>>         [gauss] Gauss Blur
+>>>         [-g] Gauss Mode: §bGenerate a blurred pixel picture (option: -r, -s)
+>>>         [tip] Gauss mode allows mixing with other modes
+>>      [speed]
+>>>         [number error] Invalid number
+>>>         [range error] The speed range must be within 0 to 1000
+>>>         [success] The pixel picture generation speed is set to
+>>      [facing error] Invalid facing, allowed: x / y / z
+>>      [follow] Follow: §2enable
+>>      [follow height] Follow-Height
+>>      [pos error] Invalid Pos
+>>      [format error] Only PNG and GIF formats are supported
+>>      [mode error] Invalid Mode
+>>      [radius] Gauss blur - Radius
+>>      [sigma] Gauss blur - Sigma
+>>      [bad path] Bad Image Path
+>>      [start] Pixel Start
+>>      [complete] Pixel drawing completed
+>>      [error]
+>>>         [parameter] Invalid parameter, Use 'pixel --help' to view help page.
+>   [worldchat]
+>>      [help]
+>>>         [title] worldchat  *help page
+>>>         [send] Send a world message
+>>>         [send2] Send a world message
+>   [repair]
+>>      [help]
+>>>         [title] repair  *help page
+>>>         [help] View help page
+>>>         [repair] Try to repair all
+>>>         [repairx] Set repair scope
+>>>         [state] View command status
+>>>         [rm] Delete record
+>>>         [option] repair   *options
+>>>         [-h] View help page
+>>>         [tip] Tip: The maximum storage limit can be changed in the configuration file
+>>      [range] Repair range
+>>      [del] Deleted range
+>>      [complete] Repair task completed
+>>      [error]
+>>>         [data] Error while reading data. Task broken.
+>>      [total] Total
+>>      [failed] Failed
+>   [replay]
+>>      [help]
+>>>         [title] replay  *help page
+>>>         [help] Help page
+>>>         [replay] Start replay
+>>>         [option] replay   *options
+>>>         [-h] Help page
+>>>         [-s] Set Cmd Exec Speed(def:20)
+>>>         [-a] Set Accuracy(def:10)
+>>>         [-n] Not run as task mode
+>>>         [-c] Curve mode
+>>      [coor error] 'replay curve' mode requires at least four saved coordinates
+>>      [coor error 2] 'replay' command requires at least two saved coordinates
+>>      [complete] Task 'replay' completed
+>   [lineto]
+>>      [help]
+>>>         [title] lineto  *help page
+>>>         [help] Help page
+>>>         [lineto] Draw a normal line
+>>>         [option] lineto   *options
+>>>         [-b] Set block used
+>>>         [-d] Set block data
+>>>         [-c] Curve mode
+>>>         [-r] Rugged line Mode
+>>      [curve coor error] Curve mode requires 4 saved coordinates
+>>      [rugged coor error] Rugged mode requires at least 2 saved coordinates
+>>      [lineto coor error] Lineto requires at least 2 saved coordinates
+>>      [complete] Draw complete !
+>   [track]
+>>      [help]
+>>>         [title] track  *help page
+>>>         [pos] Track a coordinate by its ID
+>>>         [selector] Tracking an entity through a selector
+>>>         [option] track  *options
+>>>         [-p] Assign particle names
+>>>         [-l] Specifies the maximum length of particle display
+>>>         [-h] View Help Page
+>>      [length error] Particle length ranges from 1 to 100
+>>      [len] Particle length
+>>      [selected] Position selected
+>>      [not exist] does not exist!
+>>      [unexpected error] The client returned incorrect parameters!
+>>      [invalid selector] Invalid selector!
+>>      [invalid parameter] Invalid parameter!
+>>      [selector] Selector
+>>      [error]
+>>>         [parameter] Invalid parameter, Use 'track --help' to view help page.
+>   [path]
+>>      [help]
+>>>         [title] path  *help page
+>>>         [path] Load a path to facilitate the execution of other commands
+>>>         [option] path  *options
+>>>         [-h] View help page
+>>      [error]
+>>>         [init] You must use the 'path' command to get File ID first
+>>>         [id] does not exist !
+>>>         [file] The file corresponding to the path ID does not exist !
+>>>         [exist] File does not exist or has no permission to read !
+>>      [loading] Loading path id
+>>      [load] Loading path
+>>      [saved] Path saved !
+>   [subtitle]
+>>      [help]
+>>>         [title] subtitle  *help page
+>>>         [subtitle] Add a rolling caption
+>>>         [color] Set the color of subtitles
+>>>         [option] subtitle  *options
+>>>         [-r] Reverse Color Scroll
+>>>         [-h] View help page
+>>      [error]
+>>>         [parameter] Invalid parameter, Use 'subtitle --help' for help information.
+>>>         [color] Color cannot be empty !
+>>      [color] Color saved
+>   [agent]
+>>      [help]
+>>>         [title] agent  *help page
+>>>         [option] agent  *options
+>>>         [-h] View help page
+>   [closechat]
+>>      [help]
+>>>         [title] closechat  *help page
+>>>         [option] closechat  *options
+>>>         [-h] View help page
+>>      [closechat] Close the current chat bar
+>   [querytarget]
+>>      [help]
+>>>         [title] querytarget  *help page
+>>>         [option] querytarget  *options
+>>>         [-h] View help page
+>   [listd]
+>>      [help]
+>>>         [title] listd  *help page
+>>>         [option] listd  *options
+>>>         [-h] View help page
+>   [close]
+>>      [help]
+>>>         [title] close  *help page
+>>>         [option] close  *options
+>>>         [-h] View help page
+>>>         [-f] Force disconnect from Rimspace server
+>>>         [disconnect] Disconnect from Rimspace Server
+>>      [closing] The connection to the Rimspace server is about to be lost...
+>   [ping]
+>>      [help]
+>>>         [title] ping  *help page
+>>>         [option] ping  *options
+>>>         [-h] View help page
+>>>         [-t] Ping the specified host until stopped.
+>>>         [ping] Ping a remote host
+>>      [error]
+>>>         [parameter] Invalid parameter !
+>   [ellipse]
+>>      [help]
+>>>         [title] ellipse  *help page
+>>>         [option] ellipse  *options
+>>>         [ellipse] Draw an ellipse
+>>>         [-h] View help page
+>>>         [-f] Set ellipse orientation (Default: y)
+>>>         [-r] Set ellipse rotation angle (Range: 0 to 360) (Default: 0)
+>>>         [-p] Manually specify coordinate id (Default: 0)
+>>      [error]
+>>>         [coordinate] Invalid coordinate parameter, please use 'pos add' to add a coordinate or reassign the coordinate
+>>>         [number] Invalid parameter, semi major axis and semi minor axis should be numbers
+>>>         [rotate] Wrong parameter, the rotation value should be a number
+>>>         [range] Wrong parameter. The rotation value should range from 0 to 360
+>>      [complete] Drawing complete.
+>   [circle]
+>>      [help]
+>>>         [title] circle  *help page
+>>>         [option] circle  *options
+>>>         [circle] Draw an circle
+>>>         [-h] View help page
+>>>         [-f] Set circle orientation (Default: y)
+>>>         [-r] Set circle rotation angle (Range: 0 to 360) (Default: 0)
+>>>         [-p] Manually specify coordinate id (Default: 0)

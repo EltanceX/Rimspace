@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--Rimspace web console by EltanceX 2022-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rimspace - Login</title>
+    <style>
+        body {
+            background-color: rgb(66, 66, 66);
+        }
+
+        .login {
+            z-index: 30;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            height: 300px;
+            width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: auto;
+            margin-bottom: auto;
+            background-color: rgba(241, 245, 252, 0.644);
+            border-radius: 5px;
+            box-shadow: 3px 3px 4px 1px rgb(206, 206, 206);
+            transition-duration: 1s;
+            transition-property: opacity;
+            opacity: 1;
+        }
+
+        .logo {
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            height: 70px;
+            top: 20px;
+            border: 2px solid white;
+            border-radius: 50%;
+            user-select: none;
+            transition-property: background-color;
+            background-color: rgba(255, 255, 255, 0);
+            transition-duration: 1s;
+        }
+
+        .logo:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        * {
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            position: absolute;
+            left: -20px;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            width: 300px;
+            height: 100px;
+            top: 100px;
+            justify-content: space-between;
+            z-index: -1;
+            opacity: 0;
+            transition-duration: 1s;
+            transition-property: opacity;
+        }
+
+        .cloud {
+            position: relative;
+            width: 320px;
+            height: 100px;
+            background-color: #fff;
+            border-radius: 100px;
+            top: 50px;
+        }
+
+        .cloud::before {
+            content: "";
+            top: -50px;
+            left: 40px;
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 90px 0 0 30px #fff;
+        }
+
+        .rain {
+            position: relative;
+            display: flex;
+            padding: 0 20px;
+            opacity: 0;
+            transition-duration: 1s;
+            transition-property: opacity;
+        }
+
+        .rain span {
+            position: relative;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            margin: 0 2px;
+            border-radius: 50%;
+            bottom: 10px;
+            animation: animate 5s linear infinite;
+            transform-origin: bottom;
+            animation-duration: calc(15s/var(--i));
+            animation-play-state: running;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+
+            70% {
+                transform: translateY(300px) scale(1);
+            }
+
+            100% {
+                transform: translateY(300px) scale(0);
+            }
+        }
+
+        .login span {
+            position: relative;
+            color: #fff;
+            font-size: 30px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 0;
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+            margin-top: 100px;
+            word-break: keep-all;
+            letter-spacing: 0.15em;
+            user-select: none;
+        }
+
+        input {
+            outline: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            background-color: transparent;
+            margin-top: 34px;
+            margin-left: 54px;
+            border-bottom: 3px solid rgb(224, 224, 224);
+            width: calc(100% - 70px);
+            height: 36px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 20px;
+            padding-left: 4px;
+            transition-property: border-bottom;
+            transition-duration: .5s;
+        }
+
+        input:focus {
+            border-bottom: 3px solid rgb(255, 255, 255);
+        }
+
+        .pwd {
+            position: absolute;
+            left: 10px;
+            height: 34px;
+            top: 170px;
+            cursor: pointer;
+            border-radius: 3px;
+            user-select: none;
+        }
+
+        .pwd:hover {
+            background-color: rgba(234, 239, 248, 0.747);
+        }
+
+        .pwd:active {
+            background-color: rgba(217, 219, 223, 0.747);
+        }
+
+        .btn {
+            position: relative;
+            margin-left: 40px;
+            margin-top: 24px;
+            color: rgb(41, 41, 41);
+            font-size: 24px;
+            text-align: center;
+            width: calc(100% - 80px);
+            height: 34px;
+            background-color: rgba(0, 0, 0, 0);
+            user-select: none;
+            padding-top: 4px;
+            padding-bottom: 2px;
+            cursor: pointer;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .btn:hover {
+            background-color: rgba(0, 0, 0, 0.178);
+        }
+
+        .btn:active {
+            background-color: rgba(0, 0, 0, 0.349);
+        }
+
+        .info {
+            z-index: 1000;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: auto;
+            margin-bottom: auto;
+            top: 0;
+            bottom: 0;
+            height: 300px;
+            width: 300px;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-top: 2px solid rgb(255, 94, 45);
+            border-right: 2px solid rgb(255, 234, 42);
+            border-bottom: 2px solid rgb(79, 140, 255);
+            border-left: 2px solid greenyellow;
+            overflow: auto;
+            display: none;
+            user-select: none;
+        }
+
+        .info * {
+            font-family: 'Courier New', Courier, monospace;
+            color: rgb(34, 34, 34);
+            font-size: 20px;
+            position: relative;
+            margin-left: 10px;
+            margin-top: 5px;
+        }
+    </style>
+    <style>
+        /* body.on {
+            background: radial-gradient(#555, #111);
+        } */
+        body.on .bulb::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: #fff;
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .bulb {
+            display: none;
+            position: absolute;
+            right: 120px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            width: 80px;
+            height: 80px;
+            background: rgb(58, 58, 58);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        body.on .bulb {
+            background: #fff;
+            box-shadow: 0 0 50px #fff,
+                0 0 100px #fff,
+                0 0 150px #fff,
+                0 0 200px #fff,
+                0 0 250px #fff,
+                0 0 300px #fff,
+                0 0 350px #fff;
+        }
+
+        body.on .bulb::before {
+            background: #fff;
+        }
+
+        .bulb::before {
+            content: "";
+            position: absolute;
+            width: 35px;
+            height: 80px;
+            background: #444;
+            left: 22.5px;
+            top: -50px;
+            border-top: 30px solid rgb(27, 27, 27);
+            border-radius: 10px;
+            background: rgb(58, 58, 58);
+        }
+
+        .wire {
+            display: none;
+            position: absolute;
+            width: 4px;
+            height: 60vh;
+            background: rgb(27, 27, 27);
+            /* left: calc(50% - 2px); */
+            bottom: 50%;
+            right: 160px;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body class="off">
+    <div class="light">
+        <div class="wire"></div>
+        <div class="bulb" title="这里是咚灯"></div>
+    </div>
+    <div class="login">
+        <img src="/logo_smaller.png" class="logo" ondragstart="return false" />
+        <span>Login Rimspace</span>
+        <img src="/input_pwd.png" class="pwd" />
+        <input placeholder="Your password" id="password" type="text" value="" />
+        <div class="btn">Login now</div>
+    </div>
+    <div class="info">
+        <div style="text-align: center;margin-left: 0;">Rimspace Information</div>
+        <div>(Double click me to exit)</div>
+        <div>Author: EltanceX (annularwind@outlook.com)</div>
+        <div>Contributor: Voyage27 (476445136@qq.com)</div>
+        <div>&#160;</div>
+        <div>&#160;</div>
+        <div>感谢您使用Rimspace, 请确保在使用Rimspace前已同意并仔细阅读并完全理解用户协议</div>
+    </div>
+    <div class="container">
+        <div class="cloud"> </div>
+        <div class="rain">
+            <span style="--i:13"></span>
+            <span style="--i:12"></span>
+            <span style="--i:15"></span>
+            <span style="--i:18"></span>
+            <span style="--i:11"></span>
+            <span style="--i:10"></span>
+            <span style="--i:20"></span>
+            <span style="--i:17"></span>
+            <span style="--i:15"></span>
+            <span style="--i:18"></span>
+            <span style="--i:11"></span>
+            <span style="--i:13"></span>
+            <span style="--i:12"></span>
+            <span style="--i:17"></span>
+            <span style="--i:19"></span>
+            <span style="--i:11"></span>
+            <span style="--i:12"></span>
+            <span style="--i:14"></span>
+            <span style="--i:12"></span>
+            <span style="--i:11"></span>
+        </div>
+    </div>
+</body>
+<script src="/popup.js"></script>
+<script src="/xhr.js"></script>
+<script>
+    var animation = document.getElementsByClassName("rain")[0];
+    var input = document.getElementById("password");
+    var pwdImage = document.getElementsByClassName("pwd")[0];
+    var logo = document.getElementsByClassName("logo")[0];
+    var btn = document.getElementsByClassName("btn")[0];
+    var box = document.getElementsByClassName("login")[0];
+    var container = document.getElementsByClassName("container")[0];
+    var rain = document.getElementsByClassName("rain")[0];
+    var info = document.getElementsByClassName("info")[0];
+    var bulb = document.getElementsByClassName("bulb")[0];
+    var wire = document.getElementsByClassName("wire")[0];
+    bulb.onclick = function () {
+        if (document.body.className === "on") {
+            document.body.className = "off";
+        } else {
+            document.body.className = "on";
+        }
+    }
+    bulb.ondblclick = function () {
+        if (document.body.style.background) {
+            document.body.style.background = "";
+        } else {
+            document.body.style.background = "radial-gradient(#555, #111)";
+        }
+    }
+    var height = document.body.clientHeight;
+    var width = document.body.getBoundingClientRect().width;
+    var cookies = parseCookie();
+    function random() {
+        return Math.ceil(Math.random() * (arguments[1] - arguments[0] + 1)) + arguments[0] - 1;
+    }
+    window.onload = function () {
+        if (width > 500) {
+            box.style.width = "500px";
+            info.style.width = "540px";
+            wire.style.display = "block";
+            bulb.style.display = "block";
+        } else {
+
+        }
+    }
+    info.ondblclick = function () {
+        info.style.display = "none";
+    }
+    function playAnimation() {
+        animation.childNodes.forEach((node) => {
+            if (node.nodeType !== 3) {
+                node.style.animationPlayState = node.style.animationPlayState === "paused" ? "running" : "paused";
+            }
+        });
+    }
+    function parseCookie() {
+        var cookie = document.cookie.replace(/ /g, "").split(";");
+        var json = {};
+        for (var i = 0; i < cookie.length; i++) {
+            var arr = cookie[i].split("=");
+            json[arr[0]] = arr[1];
+        }
+        return json;
+    }
+    logo.ondblclick = function () {
+        info.style.display = "block";
+        info.scrollTo(0, 0);
+    }
+    setTimeout(() => {
+        playAnimation();
+    }, 1000);
+    pwdImage.onclick = function () {
+        input.type = input.type === "password" ? "text" : "password";
+        if (input.type === "password") popup("Hide password");
+        else popup("Show password");
+    }
+    function stopPlay() {
+        box.style.opacity = "1";
+        box.style.display = "block";
+        playAnimation();
+        container.style.opacity = 0;
+        rain.style.opacity = 0;
+        btn.style.pointerEvents = "all";
+        container.onclick = null;
+    }
+    btn.onclick = function () {
+        var pwd = input.value;
+        input.value = "";
+        if (pwd) {
+            btn.style.pointerEvents = "none";
+            popup("Loading...", 500)
+            box.style.opacity = "0";
+            setTimeout(() => {
+                box.style.display = "none";
+            }, 1000);
+            playAnimation();
+            container.style.opacity = 1;
+            rain.style.opacity = 1;
+            container.onclick = playAnimation;
+
+
+
+            getRequest("/login?pwd=" + pwd, function (err, data) {
+                if (err) {
+                    console.log(err);
+                    setTimeout(() => {
+                        popup("Server Error, code: " + err, 3000);
+                        stopPlay();
+
+                    }, random(1000, 2000));
+                } else if (data === "true") {
+                    //...
+                    setTimeout(() => {
+                        window.location.href = "/console";
+                    }, random(800, 1800));
+                } else {
+                    setTimeout(() => {
+                        switch (data) {
+                            case "2":
+                                popup("Frequent operation", 3000);
+                                break;
+                            case "0":
+                            case "1":
+                                popup("Invalid password", 3000);
+                                break;
+                            default:
+                                popup("Invalid password", 3000);
+                                break;
+                        }
+                        stopPlay();
+                    }, random(1200, 2000));
+                }
+            })
+        } else if (document.cookie && cookies.value !== "null") {
+            btn.style.pointerEvents = "none";
+            box.style.opacity = "0";
+            setTimeout(() => {
+                box.style.display = "none";
+            }, 1000);
+            playAnimation();
+            container.style.opacity = 1;
+            rain.style.opacity = 1;
+            container.onclick = playAnimation;
+            setTimeout(() => {
+                window.location.href = "/console";
+            }, 1000);
+        } else {
+            popup("Invalid password", 3000);
+        }
+    }
+    input.onkeydown = function (ev) {
+        if (ev.keyCode === 13) {
+            btn.onclick();
+        }
+    }
+    // window.onload = function(){
+    //     console.log(2);
+    //     playAnimation()
+    // }
+</script>
+
+</html>

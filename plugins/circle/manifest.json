@@ -1,0 +1,6 @@
+{
+    "enable": false,
+    "rsMinVersion": "0.1.0.2",
+    "rsMaxVersion": "0.1.0.2",
+    "langDependency": ["default"]
+}

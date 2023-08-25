@@ -1,0 +1,1988 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--Rimspace Web Console by EltanceX @shimmerisland - Copyright 2022-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rimspace - Console</title>
+
+    <!--Main Style-->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ecf0f1;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-decoration: none;
+            /* border: 1px solid #f00; */
+        }
+
+        .logo {
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            color: rgba(182, 182, 182, 0.8);
+            font-family: 'Courier New', Courier, monospace;
+            right: 10px;
+            top: 4px;
+            font-size: 30px;
+            word-spacing: 0.1em;
+            overflow: hidden;
+            word-break: keep-all;
+            white-space: nowrap;
+            width: calc(100% - 10px);
+            user-select: none;
+            width: fit-content;
+            /* text-align: center; */
+            text-shadow: 0 0 5px rgb(255, 255, 255, 0.0);
+            transition-property: text-shadow, color;
+            transition-duration: .5s;
+            letter-spacing: 0.08em;
+        }
+
+        .logo:hover {
+            text-shadow: 0 0 8px rgba(255, 255, 255, 1.0);
+            color: white;
+        }
+
+        .main {
+            left: 0;
+            top: 5px;
+            position: relative;
+            width: 100%;
+            display: flex;
+            /* border: 1px solid #f00; */
+            margin: 0;
+            padding: 0;
+            justify-content: space-around;
+            flex-flow: wrap;
+        }
+    </style>
+
+    <!--Menu Style-->
+    <style>
+        .menu {
+            margin: 0;
+            position: relative;
+            left: 0;
+            top: 0;
+            width: 100%;
+            list-style: none;
+            padding: 0;
+            /* border-bottom: 2px solid rgb(228, 228, 228); */
+            box-shadow: 2px 2px 6px rgb(214, 214, 214);
+            display: flex;
+            /* justify-content: center; */
+            justify-content: flex-start;
+            background-image: linear-gradient(to bottom right, rgb(236, 240, 241), rgba(224, 228, 231, 0.795));
+        }
+
+        .menu svg {
+            height: 16px;
+            position: relative;
+            top: 2px;
+            fill: #fff;
+            margin: auto 0;
+            padding: auto 0;
+        }
+
+        .menu::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+
+        .menu li {
+            position: relative;
+            height: 100%;
+            width: fit-content;
+            /* border: 1px solid white; */
+            float: left;
+            color: white;
+            background-color: rgba(69, 167, 233, 0.75);
+            padding: 0 20px;
+            line-height: 40px;
+            margin-left: 4px;
+            margin-top: 1px;
+            user-select: none;
+            cursor: default;
+            /* border-right: 2px solid #fff; */
+            /* border-radius: 4px 4px 0 0; */
+            transition-property: background-color;
+            transition-duration: .3s;
+            font-family: 'Courier New', Courier, monospace;
+            user-select: none;
+        }
+
+        .menu li:hover {
+            background-color: #45a7e9;
+        }
+
+        .menu li::before {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            bottom: -5px;
+            left: 7px;
+            background-color: rgba(106, 184, 236, 0.0);
+            z-index: 101;
+            transform: rotate(45deg);
+            /* display: none; */
+            transition-property: background-color;
+            transition-duration: 0.3s;
+        }
+
+        .menu li:hover::before {
+            background-color: rgb(69, 167, 233);
+            /* display: block; */
+        }
+
+        .menu li:hover div {
+            display: block;
+            margin: 0;
+        }
+
+        .menu li div {
+            display: none;
+            width: fit-content;
+            position: absolute;
+            /* position: relative; */
+            margin-top: 20px;
+            background: #333;
+            left: 0;
+            top: 100%;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 0 3px 3px 3px;
+            z-index: 100;
+            user-select: none;
+        }
+
+        .menu span {
+            position: relative;
+            display: block;
+            padding-left: 10px;
+            margin: 4px 0;
+            width: fit-content;
+            font-size: 16px;
+            word-break: keep-all;
+            white-space: nowrap;
+            padding-right: 10px;
+        }
+
+        .menu span::before {
+            content: "";
+            position: absolute;
+            width: 4px;
+            height: 100%;
+            background-color: #3498db;
+            left: 0;
+            top: 0;
+            transition-property: opacity;
+            transition-duration: .3s;
+            opacity: 0;
+        }
+
+        .menu span:hover::before {
+            opacity: 1;
+        }
+    </style>
+
+    <!--PS Style-->
+    <style>
+        .PS {
+            position: relative;
+            margin-left: -10px;
+            margin-bottom: 10px;
+            margin-top: 20px;
+            height: 300px;
+            width: 300px;
+        }
+
+        .PS::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 10px;
+            height: calc(100% - 16px);
+            background-color: rgb(159, 174, 241);
+            width: 4px;
+        }
+
+        .PS_TITLE {
+            color: rgba(0, 0, 0, 0.6);
+            font-size: 30px;
+            line-height: 44px;
+            margin-left: 10px;
+            user-select: none;
+        }
+
+        .PS_CurrentPlayer {
+            position: relative;
+            font-family: 'Courier New', Courier, monospace;
+            /* color: rgb(82, 82, 82); */
+            color: white;
+            background-color: rgba(143, 143, 143, 0.4);
+            width: fit-content;
+            font-size: 24px;
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-left: 10px;
+            white-space: normal;
+            word-spacing: 0.2em;
+            /* width: 100%; */
+            z-index: 1;
+            margin-top: 4px;
+        }
+
+        .PS_CurrentPlayer::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 10px;
+            /* background-color: rgba(250, 250, 250, 0.87); */
+            background-color: inherit;
+            left: 5px;
+            top: -10px;
+            transform: skewX(-45deg);
+        }
+
+        .PS_CurrentPlayer::after {
+            content: "";
+            position: absolute;
+            background-color: rgba(187, 187, 187, 0.87);
+            height: 100%;
+            width: 10px;
+            right: -10px;
+            top: -5px;
+            transform: skewY(-45deg);
+        }
+
+        .PS_List {
+            position: relative;
+            height: calc(100% - 80px);
+            width: calc(100%);
+            margin-left: 10px;
+            margin-top: 0;
+            background-color: rgba(255, 255, 255, 0.87);
+            border-radius: 0 2px 2px 2px;
+            /* overflow: auto; */
+            /* border-top: 1px solid rgba(233, 233, 233, 0.87); */
+        }
+
+        .PS_List::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            /* background-color: rgba(250, 250, 250, 0.87); */
+            background-color: inherit;
+            left: 10px;
+            top: -20px;
+            transform: skewX(-45deg);
+        }
+
+        .PS_List::after {
+            content: "";
+            position: absolute;
+            background-color: rgba(250, 250, 250, 0.87);
+            height: 100%;
+            width: 20px;
+            right: -20px;
+            top: -10px;
+            transform: skewY(-45deg);
+
+        }
+
+        .PS_ListTitle {
+            text-align: center;
+            font-size: 24px;
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        .PS_PlayerDiv {
+            height: calc(100% - 28px);
+            width: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .PS_PlayerBox {
+            margin-left: 4px;
+            margin-top: 4px;
+            color: rgba(0, 0, 0, 0.8);
+            border-bottom: 2px solid rgba(46, 46, 46, 0.2);
+            width: calc(100% - 28px);
+            font-size: 20px;
+            padding: 0 10px;
+            cursor: pointer;
+            user-select: none;
+            transition-duration: .3s;
+            transition-property: margin-left;
+        }
+
+        .PS_PlayerBox:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            margin-left: 24px;
+        }
+
+        .PS_PlayerBox:active {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .PS_RefreshSVG {
+            position: relative;
+            height: 20px;
+            top: 4px;
+            margin-left: 6px;
+            cursor: pointer;
+            transition-duration: .5s;
+            transition-property: transform;
+        }
+
+        .PS_RefreshSVG:hover {
+            transform: rotate(180deg);
+        }
+
+        .PS_RefreshSVG:active {
+            background-color: rgb(209, 209, 209);
+        }
+    </style>
+
+    <!--Rain Style-->
+    <style>
+        #rainBox {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .rain {
+            position: absolute;
+            width: 2px;
+            height: 50px;
+            /* background-color: white; */
+            background: linear-gradient(rgba(255, 255, 255, .3), rgba(255, 255, 255, .6));
+        }
+    </style>
+
+    <!--Block Style-->
+    <style>
+        .block {
+            position: absolute;
+            /* background-color: #000; */
+            /* clip-path: polygon(0 0, 0% 100%, 100% 50%); */
+        }
+
+        .blockBox {
+            position: fixed;
+            width: 100%;
+            left: 0;
+            top: 0;
+            height: 100%;
+            z-index: -1;
+            color: rgb(255, 118, 55);
+        }
+    </style>
+
+    <!--Clock Style-->
+    <style>
+        .clock {
+            position: fixed;
+            opacity: 0.8;
+            z-index: -1;
+            width: 350px;
+            height: 350px;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background: url(clock.png) left/cover;
+            border: 4px solid #b4b4b4;
+            border-radius: 50%;
+            box-shadow:
+                0 -15px 15px rgba(255, 255, 255, 0.05),
+                inset 0 -15px 15px rgba(255, 255, 255, 0.05),
+                0 15px 15px rgba(0, 0, 0, 0.3),
+                inset 0 15px 15px rgba(0, 0, 0, 0.3);
+
+        }
+
+        .clock::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #fff;
+            border-radius: 50%;
+            z-index: 10000;
+        }
+
+        .clock .hour,
+        .clock .min,
+        .clock .sec {
+            position: absolute;
+        }
+
+        .clock .hour,
+        .hr {
+            width: 160px;
+            height: 160px;
+        }
+
+        .clock .min,
+        .mn {
+            width: 190px;
+            height: 190px;
+        }
+
+        .clock .sec,
+        .sc {
+            width: 230px;
+            height: 230px;
+        }
+
+        .hr,
+        .mn,
+        .sc {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .hr::before {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 80px;
+            background: #696969;
+            z-index: 10;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .mn::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 90px;
+            background: rgb(146, 146, 146);
+            z-index: 11;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .sc::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 150px;
+            background: #ff692e;
+            z-index: 12;
+            border-radius: 6px 6px 0 0;
+        }
+    </style>
+
+    <!--SC Style-->
+    <style>
+        .SC_Box {
+            margin-left: 0;
+            margin-top: 20px;
+            position: relative;
+            height: 300px;
+            width: 600px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 2px;
+        }
+
+        .SC_InputBox {
+            position: absolute;
+            width: 100%;
+            height: 30px;
+            left: 10px;
+            bottom: 10px;
+        }
+
+        .SC_Input {
+            position: relative;
+            outline: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            background-color: transparent;
+            border-bottom: 2.4px solid #fff;
+            color: #fff;
+            font-size: 22px;
+            font-family: 'Courier New', Courier, monospace;
+            width: calc(100% - 100px);
+        }
+
+        .SC_Box svg {
+            position: relative;
+            height: 26px;
+            top: 10px;
+            fill: #fff;
+            margin-left: 6px;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-drag: none;
+            /* transition-duration: .3s; */
+            /* transition-property: background-color; */
+            border-radius: 2px;
+        }
+
+        .SC_Box svg:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .SC_Box svg:active {
+            background-color: rgba(255, 255, 255, 0.7);
+
+        }
+
+        .SC_Messages {
+            position: relative;
+            height: calc(100% - 30px);
+            width: 100%;
+            /* border: 1px solid #f00; */
+            overflow-y: auto;
+            overflow-x: hidden;
+            word-break: break-all;
+        }
+
+        .SC_Messages div {
+            margin-left: 6px;
+            margin-top: 6px;
+            transition-duration: .5s;
+            transition-property: color;
+        }
+
+        .SC_Messages_Div {
+            color: rgb(181, 255, 181);
+            text-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+        }
+
+        .SC_Messages_Div_1 {
+            color: rgb(255, 255, 255);
+            text-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+        }
+
+        .SC_Messages_Div_2 {
+            color: rgb(77, 205, 255);
+            /* text-shadow: 0 0 4px #fff; */
+            font-size: 18px;
+        }
+
+        .SC_Messages_Div_3 {
+            color: rgb(255, 208, 77);
+            /* text-shadow: 0 0 4px #fff; */
+            font-size: 18px;
+        }
+    </style>
+
+    <!--SP Style-->
+    <style>
+        .SP_Box {
+            position: relative;
+            margin-top: 20px;
+            height: fit-content;
+            width: 500px;
+            /* border: 1px solid #f00; */
+            user-select: none;
+            /* display: flex; */
+            /* flex-wrap: wrap; */
+            /* display: inline-block; */
+            /* justify-content: space-around; */
+            display: none;
+
+        }
+
+        .SP_Btn {
+            padding: 8px 10px;
+            color: rgb(255, 255, 255);
+            background-color: rgba(0, 0, 0, 0.2);
+            font-size: 20px;
+            height: fit-content;
+            width: fit-content;
+            margin: 10px 6px;
+            cursor: pointer;
+            border-radius: 1px;
+            user-select: none;
+            display: inline-block;
+        }
+
+        .SP_Btn svg {
+            position: relative;
+            top: 2px;
+            height: 20px;
+            fill: #fff;
+        }
+
+        .SP_Btn:hover {
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .SP_Btn:active {
+            background-color: rgba(0, 0, 0, 0.6);
+            transform: translate(2px, 2px);
+        }
+
+        .SP_PosList {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 2px 2px 2px 0;
+        }
+
+        .SP_Box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            background-color: #ffffff;
+            height: 3px;
+            left: 0;
+            width: 200px;
+        }
+
+        .SP_Box::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            background-color: #ffffff;
+            height: 100px;
+            left: 0;
+            width: 3px;
+        }
+
+        .SP_PosList::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            background-color: #ffffff;
+            height: 3px;
+            right: 0;
+            width: 100px;
+        }
+
+        .SP_PosList::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            background-color: #ffffff;
+            height: 200px;
+            right: 0;
+            width: 3px;
+        }
+
+        .SP_PosList span {
+            display: block;
+            position: relative;
+            color: rgb(51, 51, 51);
+            font-size: 20px;
+            /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-left: 10px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            border-style: dashed;
+            border-color: rgba(58, 142, 252, 0.4);
+            border-width: 0;
+            cursor: pointer;
+        }
+
+        .SP_PosList span:hover {
+            background-color: rgba(58, 142, 252, 0.2);
+        }
+
+        .SP_PosList span:active {
+            background-color: rgba(58, 142, 252, 0.4);
+        }
+    </style>
+
+    <!--RE Style-->
+    <style>
+        .RE_Box {
+            display: none;
+            position: relative;
+            height: 320px;
+            width: 300px;
+            background-color: rgba(0, 0, 0, 0.8);
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+
+        .RE_Title {
+            position: relative;
+            text-align: center;
+            font-size: 34px;
+            color: #fff;
+            letter-spacing: 0.2em;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-top: 10px;
+        }
+
+        .RE_Mode,
+        .RE_Pos,
+        .RE_Speed,
+        .RE_Accuracy {
+            border-left: 4px solid #45a7e9;
+            position: relative;
+            margin-left: 6px;
+            color: white;
+            padding-left: 10px;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        .RE_Mode span,
+        .RE_Pos span {
+            background-color: rgba(112, 112, 112, 0.5);
+            cursor: pointer;
+            padding: 6px 10px;
+            user-select: none;
+        }
+
+        .RE_Speed input,
+        .RE_Accuracy input {
+            position: relative;
+            outline: none;
+            border: none;
+            background-color: rgba(112, 112, 112, 0.5);
+            width: 60px;
+            height: 36px;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 24px;
+            letter-spacing: 0.2em;
+            padding-left: 10px;
+        }
+
+        .RE_Start {
+            position: relative;
+            background-color: rgba(112, 112, 112, 0.5);
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            width: fit-content;
+            text-align: center;
+            height: 30px;
+            color: #fff;
+            font-size: 24px;
+            margin-top: 10px;
+            padding: 4px 10px;
+            line-height: 22px;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .RE_Start:hover {
+            background-color: rgba(146, 146, 146, 0.6);
+        }
+
+        .RE_Start:active {
+            background-color: rgba(192, 192, 192, 0.8);
+        }
+    </style>
+
+    <!--FS Style-->
+    <style>
+        .FS_Box {
+            position: relative;
+            margin-top: 30px;
+            height: 300px;
+            width: 600px;
+            /* background-color: #f00; */
+            display: none;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .FS_FileSelector {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: rgb(78, 78, 78);
+            font-size: 20px;
+            border-radius: 2px 0 2px 2px;
+        }
+
+        .FS_Details {
+            position: relative;
+            width: 300px;
+            height: fit-content;
+            min-height: 200px;
+            background-color: rgba(219, 219, 219, 0.8);
+        }
+
+        .FS_Title {
+            color: rgb(46, 46, 46);
+            font-size: 30px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .FS_File_Box {
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+            height: calc(100% - 50px);
+            /* background-color: red; */
+        }
+
+        .FS_Title::before {
+            content: "";
+            position: absolute;
+            top: 46px;
+            left: 2px;
+            width: 4px;
+            height: calc(100% - 50px);
+            background-color: #45a7e9;
+        }
+
+        .FS_File_Box div {
+            position: relative;
+            margin-left: 10px;
+            width: calc(100% - 30px);
+            background-color: rgba(0, 0, 0, 0.1);
+            height: fit-content;
+            margin-top: 2px;
+            padding: 2px 4px;
+            user-select: none;
+            cursor: pointer;
+            transition-duration: .3s;
+            transition-property: transform;
+            overflow: hidden;
+            white-space: nowrap;
+            letter-spacing: 0.12em;
+        }
+
+        .FS_File_Box div:hover {
+            transform: translate(10px);
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .FS_File_Box div:active {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .FS_File_Box div svg {
+            position: relative;
+            top: 2px;
+            height: 20px;
+            fill: rgb(78, 78, 78);
+            padding-right: 4px;
+        }
+
+        .FS_Details_Path {
+            font-size: 20px;
+            color: #fff;
+            background-color: rgba(37, 37, 37, 0.3);
+            position: relative;
+            margin-left: 6px;
+            margin-top: 4px;
+            width: calc(100% - 12px);
+            padding: 2px 4px;
+            max-height: 50px;
+            overflow: hidden;
+            word-break: break-all;
+            word-wrap: break-word;
+            letter-spacing: 0.1em;
+            overflow-y: auto;
+        }
+
+        .FS_Details_Data svg {
+            position: relative;
+            height: 50px;
+            fill: rgb(78, 78, 78);
+            left: 50%;
+            top: 10px;
+            transform: translate(-50%);
+        }
+
+        .FS_Details_Data span {
+            display: block;
+            position: relative;
+            border-left: 4px solid rgba(80, 80, 80, 0.6);
+            margin-left: 10px;
+            width: calc(100% - 20px);
+            margin-top: 10px;
+            height: fit-content;
+            font-size: 22px;
+            padding: 4px 6px;
+            color: rgb(78, 78, 78);
+            letter-spacing: 0.1em;
+            overflow-x: hidden;
+            white-space: nowrap;
+        }
+
+        .FS_Details_Data div {
+            margin-left: 20px;
+            position: relative;
+            margin-top: 10px;
+            padding: 4px 10px;
+            width: calc(100% - 40px);
+            background-color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            margin-bottom: 4px;
+            font-size: 24px;
+            color: rgb(97, 97, 97);
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .FS_Details_Data div:hover {
+            background-color: rgba(241, 241, 241, 0.6);
+        }
+
+        .FS_Details_Data div:active {
+            transform: translate(2px, 2px);
+            background-color: rgba(180, 180, 180, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <noscript>
+        <h3><big>Rimspace: Error: JavaScript needs to be enabled for page operation</big></h3>
+    </noscript>
+    <div id="rainBox"></div>
+
+    <div class="blockBox"> </div>
+
+    <div class="menu">
+        <div class="logo">Rimspace Console</div>
+        <!--User menu-->
+        <li>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                <path
+                    d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM224 32c52.94 0 96 43.06 96 96c0 52.93-43.06 96-96 96S128 180.9 128 128C128 75.06 171.1 32 224 32zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304zM413.3 480H34.66C33.2 480 32 478.8 32 477.3C32 399.4 95.4 336 173.3 336h101.3C352.6 336 416 399.4 416 477.3C416 478.8 414.8 480 413.3 480z" />
+            </svg>
+            User
+            <div>
+                <span onclick="window.location.href = '/'">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                        <path
+                            d="M432 240H134.6l116.7-116.7c6.25-6.25 6.25-16.38 0-22.62s-16.38-6.25-22.62 0l-144 144C81.56 247.8 80 251.9 80 256s1.562 8.188 4.688 11.31l144 144c6.25 6.25 16.38 6.25 22.62 0s6.25-16.38 0-22.62L134.6 272H432C440.8 272 448 264.8 448 256S440.8 240 432 240zM16 64C7.156 64 0 71.16 0 80v352C0 440.8 7.156 448 16 448S32 440.8 32 432v-352C32 71.16 24.84 64 16 64z" />
+                    </svg>
+                    Back
+                </span>
+                <span onclick="window.location.href = '/console'">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                        <path
+                            d="M40 16C53.25 16 64 26.75 64 40v102.1C103.7 75.57 176.3 32.11 256.1 32.11C379.6 32.11 480 132.5 480 256s-100.4 223.9-223.9 223.9c-52.31 0-103.3-18.33-143.5-51.77c-10.19-8.5-11.56-23.62-3.062-33.81c8.5-10.22 23.66-11.56 33.81-3.062C174.9 417.5 214.9 432 256 432c97.03 0 176-78.97 176-176S353 80 256 80c-66.54 0-126.8 38.28-156.5 96H200C213.3 176 224 186.8 224 200S213.3 224 200 224h-160C26.75 224 16 213.3 16 200v-160C16 26.75 26.75 16 40 16z" />
+                    </svg>
+                    Refresh
+                </span>
+                <span onclick="document.cookie = 'value=null;';setTimeout(()=>{window.location.href = '/'},500)">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                        <path
+                            d="M168 432H96c-26.4 0-48-21.6-48-48V128c0-26.4 21.6-48 48-48h72C181.3 80 192 69.25 192 56C192 42.74 181.3 32 168 32H96C42.98 32 0 74.98 0 128v256c0 53.02 42.98 96 96 96h72C181.3 480 192 469.3 192 456C192 442.7 181.3 432 168 432zM503.9 238.6L351.5 104.4c-9.844-8.75-24-10.88-36.09-5.469C303.6 104.3 296 115.9 296 128.7v55.31H176c-22.06 0-40 17.94-40 40v64c0 22.06 17.94 40 40 40h120v55.31c0 12.75 7.625 24.41 19.41 29.72c4.438 2 9.156 2.969 13.84 2.969c8.062 0 16.03-2.906 22.25-8.438l152.4-133.1C509.1 269.9 512 263.4 512 256.5S509.1 243.1 503.9 238.6zM344 350V279.1h-160v-48h160V161.1l107.8 94.54L344 350z" />
+                    </svg>
+                    Logout
+                </span>
+            </div>
+        </li>
+
+        <!--Exe menu-->
+        <li>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                <path
+                    d="M444.9 256c15.5-20.25 26.56-40.63 31.68-60c6-22.62 4-43.38-6-60.25c-18.25-30.5-60.38-42.88-113.5-38.38C333.9 37.75 297.6 0 256 0S178.1 37.75 155 97.38c-53.25-4.5-95.38 7.875-113.5 38.38C31.38 152.6 29.38 173.4 35.38 196C40.5 215.4 51.56 235.8 67.06 256C51.56 276.3 40.5 296.6 35.38 316c-6 22.62-4 43.38 6 60.25c15.88 26.5 49.63 39.5 93.13 39.5c6.375 0 13.5-1.25 20.25-1.75C177.1 473.9 214.3 512 256 512s77.1-38.13 101.3-97.1c6.75 .4997 13.88 1.75 20.25 1.75c43.5 0 77.25-13 93-39.5c10.12-16.88 12.12-37.63 6.125-60.25C471.5 296.6 460.4 276.3 444.9 256zM68.88 359.8c-5.5-9.25-6.375-21.25-2.625-35.5C69.1 310.5 77.88 295.9 88.63 281c13.5 13.88 28 26.62 43.25 38.38c2.625 21.62 6.875 43 12.62 64C106.8 385.3 79.13 376.9 68.88 359.8zM128.4 274.8C121.6 268.5 115.3 262.3 109.3 256c6-6.25 12.38-12.5 19.12-18.75C128.3 243.5 128 249.6 128 256S128.3 268.5 128.4 274.8zM131.9 192.5C116.6 204.3 102.1 217.1 88.63 231C77.88 216.1 69.1 201.4 66.25 187.8C62.5 173.5 63.38 161.5 68.88 152.3c9.25-15.5 32.75-24 65.25-24c3.25 0 6.875 .25 10.38 .375C138.8 149.6 134.5 171 131.9 192.5zM343.8 167c-8.375-5.25-16.88-10.5-25.88-15.5C311.5 147.9 305 144.6 298.6 141.4c12-3.625 24.25-6.5 36.5-8.875C337.1 142 341.9 157.4 343.8 167zM256 32c24.12 0 49.5 26 68.25 70C300.9 106.8 278.1 113.5 256 122.3C233.9 113.5 211.1 106.8 187.8 102C206.5 58 231.9 32 256 32zM176.9 132.5c12.25 2.375 24.5 5.25 36.5 8.875C207 144.6 200.5 148 194.1 151.5c-9 5-17.5 10.25-25.88 15.5C170.1 157.4 173.1 142 176.9 132.5zM168.3 345c8.375 5.25 16.88 10.5 25.88 15.5c6.75 3.75 13.38 6.5 20.12 9.875c-12.25 3.75-24.75 6.75-37.38 9.125C173.4 368.1 170.6 356.6 168.3 345zM256 480c-24.12 0-49.75-26.25-68.38-70.5C211 404.8 233.9 398 256 389.3c22.12 8.75 45 15.5 68.38 20.25C305.8 453.8 280.1 480 256 480zM335.1 379.5c-12.62-2.375-25-5.375-37.25-9.125c6.625-3.375 13.38-6.125 20-9.875c9-5 17.5-10.25 25.88-15.5C341.4 357.1 338.4 368.6 335.1 379.5zM349.9 302c-15.25 11.12-31.12 21.37-47.5 30.5c-15.12 8.375-30.5 16-46.38 22.62c-15.88-6.625-31.25-14.25-46.38-22.62c-16.38-9.125-32.25-19.38-47.5-30.38C160.8 287.4 160 272 160 256s.7443-31.38 2.119-45.1c15.25-11.13 31.12-21.38 47.5-30.5C224.8 171 240.1 163.5 256 156.8C271.9 163.5 287.3 171 302.4 179.5c16.38 9.125 32.25 19.38 47.5 30.38C351.3 224.6 351.1 240 351.1 256S351.3 287.4 349.9 302zM377.1 128.3c32.38 0 55.88 8.5 65.13 24c5.5 9.25 6.375 21.25 2.625 35.5c-3.75 13.62-11.62 28.38-22.38 43.25c-13.5-13.88-28-26.75-43.25-38.38c-2.625-21.62-6.875-43-12.62-63.88C371 128.5 374.6 128.3 377.1 128.3zM383.6 237.3C390.4 243.5 396.8 249.8 402.8 256c-6 6.25-12.38 12.5-19.12 18.75C383.8 268.5 384 262.4 384 256S383.8 243.5 383.6 237.3zM443.1 359.8c-10.25 17.12-37.88 25.5-75.63 23.62c5.75-21 10-42.38 12.62-64c15.25-11.62 29.75-24.5 43.25-38.38c10.75 14.88 18.62 29.5 22.38 43.25C449.5 338.5 448.6 350.5 443.1 359.8zM256 232C242.8 232 232 242.8 232 256S242.8 280 256 280S280 269.3 280 256S269.3 232 256 232z" />
+            </svg>
+            Exe
+            <div>
+                <span onclick="changePosDisplayState()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                        <path
+                            d="M352 256C352 309 309 352 256 352C202.1 352 160 309 160 256C160 202.1 202.1 160 256 160C309 160 352 202.1 352 256zM256 208C229.5 208 208 229.5 208 256C208 282.5 229.5 304 256 304C282.5 304 304 282.5 304 256C304 229.5 282.5 208 256 208zM256 0C269.3 0 280 10.75 280 24V65.49C366.8 76.32 435.7 145.2 446.5 232H488C501.3 232 512 242.7 512 256C512 269.3 501.3 280 488 280H446.5C435.7 366.8 366.8 435.7 280 446.5V488C280 501.3 269.3 512 256 512C242.7 512 232 501.3 232 488V446.5C145.2 435.7 76.32 366.8 65.49 280H24C10.75 280 0 269.3 0 256C0 242.7 10.75 232 24 232H65.49C76.32 145.2 145.2 76.32 232 65.49V24C232 10.75 242.7 0 256 0V0zM112 256C112 335.5 176.5 400 256 400C335.5 400 400 335.5 400 256C400 176.5 335.5 112 256 112C176.5 112 112 176.5 112 256z" />
+                    </svg>
+                    Set pos
+                </span>
+                <span onclick="changeReplayState()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                        <path
+                            d="M520 464H120C106.7 464 96 474.7 96 488C96 501.3 106.7 512 120 512h400c13.25 0 24-10.75 24-24C544 474.7 533.3 464 520 464zM576 0H64C28.65 0 0 28.65 0 64v288c0 35.35 28.65 64 64 64h512c35.35 0 64-28.65 64-64V64C640 28.65 611.3 0 576 0zM592 352c0 8.822-7.178 16-16 16H64c-8.822 0-16-7.178-16-16V64c0-8.822 7.178-16 16-16h512c8.822 0 16 7.178 16 16V352z" />
+                    </svg>
+                    Replay
+                </span>
+                <span onclick="changeFileSelectorState()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                        <path
+                            d="M447.1 96h-172.1L226.7 50.75C214.7 38.74 198.5 32 181.5 32H63.1c-35.35 0-64 28.66-64 64v320c0 35.34 28.65 64 64 64h384c35.35 0 64-28.66 64-64V160C511.1 124.7 483.3 96 447.1 96zM463.1 416c0 8.824-7.178 16-16 16h-384c-8.822 0-16-7.176-16-16V96c0-8.824 7.178-16 16-16h117.5c4.273 0 8.293 1.664 11.31 4.688L255.1 144h192c8.822 0 16 7.176 16 16V416z" />
+                    </svg>
+                    File selector
+                </span>
+            </div>
+        </li>
+
+        <!--Page menu-->
+        <li>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                <path
+                    d="M386.7 23.11C411.6-2.142 452.4-2.267 477.5 22.83L489.4 34.75C514.4 59.74 514.4 100.3 489.4 125.3L296.9 317.8C288.1 326.6 276.9 332.7 264.8 335.2L179.3 353.2C173.1 354.3 168.5 352.6 164.7 348.8C160.9 344.1 159.2 339.5 160.3 334.2L178.3 248.6C180.8 236.5 186.8 225.5 195.4 216.7L386.7 23.11zM454.8 45.46C442.3 32.91 421.9 32.97 409.4 45.6L382.1 72.37L440 129.4L466.8 102.6C479.3 90.13 479.2 69.87 466.8 57.38L454.8 45.46zM209.6 255.1L196.7 316.8L258.2 303.9C264.3 302.6 269.9 299.6 274.3 295.2L417.4 152L360.5 95.14L218.2 239.2C213.9 243.6 210.9 249.1 209.6 255.1L209.6 255.1zM301.1 52.89C286.5 49.69 271.5 48 256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C264.8 464 272 471.2 272 480C272 488.8 264.8 496 256 496C123.5 496 16 388.5 16 256C16 123.5 123.5 16 256 16C280.7 16 304.5 19.73 326.1 26.67L301.1 52.89zM496 256C496 335.5 431.5 400 352 400C339.6 400 327.5 398.4 316 395.5C307.5 393.3 302.3 384.5 304.5 375.1C306.7 367.4 315.4 362.3 323.1 364.5C332.9 366.8 342.3 368 352 368C413.9 368 464 317.9 464 256C464 240.9 462.4 226.1 459.3 211.9L485.5 185.7C492.3 207.9 496 231.5 496 256V256z" />
+            </svg>
+            Page
+            <div>
+                <span onclick="changeClStyle()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                        <path
+                            d="M160 255.1C160 273.7 145.7 287.1 128 287.1C110.3 287.1 96 273.7 96 255.1C96 238.3 110.3 223.1 128 223.1C145.7 223.1 160 238.3 160 255.1zM128 159.1C128 142.3 142.3 127.1 160 127.1C177.7 127.1 192 142.3 192 159.1C192 177.7 177.7 191.1 160 191.1C142.3 191.1 128 177.7 128 159.1zM288 127.1C288 145.7 273.7 159.1 256 159.1C238.3 159.1 224 145.7 224 127.1C224 110.3 238.3 95.1 256 95.1C273.7 95.1 288 110.3 288 127.1zM320 159.1C320 142.3 334.3 127.1 352 127.1C369.7 127.1 384 142.3 384 159.1C384 177.7 369.7 191.1 352 191.1C334.3 191.1 320 177.7 320 159.1zM441.9 319.1H344C317.5 319.1 296 341.5 296 368C296 371.4 296.4 374.7 297 377.9C299.2 388.1 303.5 397.1 307.9 407.8C313.9 421.6 320 435.3 320 449.8C320 481.7 298.4 510.5 266.6 511.8C263.1 511.9 259.5 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256C512 256.9 511.1 257.8 511.1 258.7C511.6 295.2 478.4 320 441.9 320V319.1zM463.1 258.2C463.1 257.4 464 256.7 464 255.1C464 141.1 370.9 47.1 256 47.1C141.1 47.1 48 141.1 48 255.1C48 370.9 141.1 464 256 464C258.9 464 261.8 463.9 264.6 463.8C265.4 463.8 265.9 463.6 266.2 463.5C266.6 463.2 267.3 462.8 268.2 461.7C270.1 459.4 272 455.2 272 449.8C272 448.1 271.4 444.3 266.4 432.7C265.8 431.5 265.2 430.1 264.5 428.5C260.2 418.9 253.4 403.5 250.1 387.8C248.7 381.4 248 374.8 248 368C248 314.1 290.1 271.1 344 271.1H441.9C449.6 271.1 455.1 269.3 459.7 266.2C463 263.4 463.1 260.9 463.1 258.2V258.2z" />
+                    </svg>
+                    CL Color
+                </span>
+                <span onclick="chanegRainState()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                        <path
+                            d="M32 448c-17.75 0-32 14.25-32 32s14.25 32 32 32s32-14.25 32-32S49.75 448 32 448zM410.8 104.3C397.3 61.75 357.1 32 312 32c-13.5 0-26.75 2.625-39.25 7.75C250.3 14.5 218.4 0 184 0c-64 0-116.4 50.25-119.8 113.4C25.63 130.4 0 168.5 0 212C0 271.5 48.38 320 108 320h296C463.6 320 512 271.5 512 212C512 154.8 467.1 107.8 410.8 104.3zM404 272h-296C74.88 272 48 245.1 48 212C48 184 67.13 160 94.38 153.8l20.88-4.875L112.4 124C112.3 122.8 112 121.4 112 120c0-39.75 32.25-72 72-72c25.25 0 48.25 13.12 61.38 35.13l13.38 22.12l21-15C289.4 83.63 300.5 80 312 80c28.62 0 52.38 21.75 55.25 50.38L369.5 152H404c33.13 0 60 26.88 60 60S437.1 272 404 272zM256 448c-17.75 0-32 14.25-32 32s14.25 32 32 32s32-14.25 32-32S273.8 448 256 448zM198.8 353.9c-12.17-5.219-26.3 .4062-31.52 12.59l-48 112c-5.219 12.19 .4219 26.31 12.61 31.53C134.1 511.4 138.2 512 141.3 512c9.312 0 18.17-5.438 22.08-14.53l48-112C216.6 373.3 210.1 359.2 198.8 353.9zM81.45 353.9c-12.19-5.219-26.3 .4062-31.52 12.59l-8 18.66c-5.219 12.19 .4219 26.31 12.61 31.53c3.078 1.312 6.281 1.938 9.438 1.938c9.312 0 18.17-5.438 22.08-14.53l8-18.66C99.28 373.3 93.64 359.2 81.45 353.9zM305.5 353.9c-12.19-5.219-26.3 .4062-31.52 12.59l-8 18.66c-5.219 12.19 .4219 26.31 12.61 31.53c3.078 1.312 6.281 1.938 9.438 1.938c9.312 0 18.17-5.438 22.08-14.53l8-18.66C323.3 373.3 317.6 359.2 305.5 353.9zM433.5 353.9c-12.16-5.219-26.28 .4062-31.52 12.59l-48 112c-5.219 12.19 .4219 26.31 12.61 31.53C369.6 511.4 372.8 512 375.1 512c9.312 0 18.17-5.438 22.08-14.53l48-112C451.3 373.3 445.6 359.2 433.5 353.9z" />
+                    </svg>
+                    Rain
+                </span>
+                <span onclick="changeClockState()">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                        <path
+                            d="M280 256C280 264 275.1 271.5 269.3 275.1L173.3 339.1C162.3 347.3 147.4 344.3 140 333.3C132.7 322.3 135.7 307.4 146.7 300L232 243.2V120C232 106.7 242.7 96 256 96C269.3 96 280 106.7 280 120L280 256zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z" />
+                    </svg>
+                    Clock
+                </span>
+                <span onclick="popup('Rimspace Web Console by EltanceX @shimmerisland - Copyright 2022')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                        <path
+                            d="M96 0C113.7 0 128 14.33 128 32V64H480C497.7 64 512 78.33 512 96C512 113.7 497.7 128 480 128H128V480C128 497.7 113.7 512 96 512C78.33 512 64 497.7 64 480V128H32C14.33 128 0 113.7 0 96C0 78.33 14.33 64 32 64H64V32C64 14.33 78.33 0 96 0zM448 160C465.7 160 480 174.3 480 192V352C480 369.7 465.7 384 448 384H192C174.3 384 160 369.7 160 352V192C160 174.3 174.3 160 192 160H448z" />
+                    </svg>
+                    About
+                </span>
+                <span onclick="popup('Email us at annularwind@outlook.com')">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                        <path
+                            d="M344 112h-176C154.8 112 144 122.8 144 136s10.75 23.1 24 23.1L232 160v136C232 309.3 242.8 320 256 320s24-10.75 24-24V160l64-.0004c13.25 0 24-10.75 24-23.1S357.3 112 344 112zM448-.0004H64c-35.25 0-64 28.75-64 63.1v287.1c0 35.25 28.75 63.1 64 63.1h96v83.98c0 9.836 11.02 15.55 19.12 9.7L304 415.1H448c35.25 0 64-28.75 64-63.1V63.1C512 28.75 483.3-.0004 448-.0004zM464 352c0 8.75-7.25 16-16 16h-160l-80 60v-60H64c-8.75 0-16-7.25-16-16V64c0-8.75 7.25-16 16-16h384c8.75 0 16 7.25 16 16V352z" />
+                    </svg>
+                    Contact
+                </span>
+            </div>
+        </li>
+    </div>
+
+    <div class="clock">
+        <div class="hour">
+            <div class="hr" id="hr"></div>
+        </div>
+        <div class="min">
+            <div class="mn" id="mn"></div>
+        </div>
+        <div class="sec">
+            <div class="sc" id="sc"></div>
+        </div>
+    </div>
+
+    <div class="main">
+        <!--PS div-->
+        <div class="PS">
+            <div class="PS_TITLE">Player Selector</div>
+            <div class="PS_CurrentPlayer">No Player Bound</div>
+            <div class="PS_List">
+                <div class="PS_ListTitle">List of all players<svg class="PS_RefreshSVG"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                        <path
+                            d="M464 32C455.2 32 448 39.16 448 48v129.3C416.2 99.72 340.6 48 256 48c-102 0-188.3 72.91-205.1 173.3C49.42 230.1 55.3 238.3 64.02 239.8C64.91 239.9 65.8 240 66.67 240c7.672 0 14.45-5.531 15.77-13.34C96.69 141.7 169.7 80 256 80c72.49 0 137.3 44.88 163.6 112H304C295.2 192 288 199.2 288 208S295.2 224 304 224h160C472.8 224 480 216.8 480 208v-160C480 39.16 472.8 32 464 32zM447.1 272.2c-8.766-1.562-16.97 4.406-18.42 13.12C415.3 370.3 342.3 432 255.1 432c-72.49 0-137.3-44.88-163.6-112H208C216.8 320 224 312.8 224 304S216.8 288 208 288h-160C39.16 288 32 295.2 32 304v160C32 472.8 39.16 480 48 480S64 472.8 64 464v-129.3C95.84 412.3 171.4 464 256 464c101.1 0 188.3-72.91 205.1-173.3C462.6 281.9 456.7 273.7 447.1 272.2z" />
+                    </svg></div>
+                <div class="PS_PlayerDiv">
+                    <div class="PS_PlayerBox">1.EltanceX</div>
+                    <div class="PS_PlayerBox">2.Voyage27</div>
+                    <div class="PS_PlayerBox">3.EltanceX</div>
+                    <div class="PS_PlayerBox">4.Voyage27</div>
+                </div>
+            </div>
+        </div>
+
+        <!--SC div-->
+        <div class="SC_Box">
+            <div class="SC_InputBox">
+                <input class="SC_Input" aria-placeholder="Command Line" value="" />
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" id="SC_DeleteHistory">
+                    <path
+                        d="M310.1 22.56L336.9 64H432C440.8 64 448 71.16 448 80C448 88.84 440.8 96 432 96H416V192.7C405 193.7 394.3 195.7 384 198.6V96H64V432C64 458.5 85.49 480 112 480H296.2C306.3 492.1 317.9 502.9 330.8 512H112C67.82 512 32 476.2 32 432V96H16C7.164 96 0 88.84 0 80C0 71.16 7.164 64 16 64H111.1L137 22.56C145.8 8.526 161.2 0 177.7 0H270.3C286.8 0 302.2 8.526 310.1 22.56V22.56zM148.9 64H299.1L283.8 39.52C280.9 34.84 275.8 32 270.3 32H177.7C172.2 32 167.1 34.84 164.2 39.52L148.9 64zM336 176V220.5C324.3 228.1 313.6 237.1 304 247.2V176C304 167.2 311.2 160 320 160C328.8 160 336 167.2 336 176V176zM144 400C144 408.8 136.8 416 128 416C119.2 416 112 408.8 112 400V176C112 167.2 119.2 160 128 160C136.8 160 144 167.2 144 176V400zM240 400C240 408.8 232.8 416 224 416C215.2 416 208 408.8 208 400V176C208 167.2 215.2 160 224 160C232.8 160 240 167.2 240 176V400zM431.1 288C440.8 288 447.1 295.2 447.1 304V352H480C488.8 352 496 359.2 496 368C496 376.8 488.8 384 480 384H431.1C423.2 384 415.1 376.8 415.1 368V304C415.1 295.2 423.2 288 431.1 288V288zM288 368C288 288.5 352.5 224 432 224C511.5 224 576 288.5 576 368C576 447.5 511.5 512 432 512C352.5 512 288 447.5 288 368zM432 480C493.9 480 544 429.9 544 368C544 306.1 493.9 256 432 256C370.1 256 320 306.1 320 368C320 429.9 370.1 480 432 480z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="SC_Send">
+                    <path
+                        d="M511.1 255.1c0 12.8-7.625 24.38-19.41 29.41L44.6 477.4c-4.062 1.75-8.344 2.594-12.59 2.594c-8.625 0-17.09-3.5-23.28-10.05c-9.219-9.766-11.34-24.25-5.344-36.27l73.66-147.3l242.1-30.37L77.03 225.6l-73.66-147.3C-2.623 66.3-.4982 51.81 8.72 42.05c9.25-9.766 23.56-12.75 35.87-7.453L492.6 226.6C504.4 231.6 511.1 243.2 511.1 255.1z" />
+                </svg>
+            </div>
+            <div class="SC_Messages">
+                <div class="SC_Messages_Div">Super Command Line(CL) loaded.</div>
+                <div class="SC_Messages_Div">Type help to view help page.</div>
+            </div>
+        </div>
+
+        <!--SP div-->
+        <div class="SP_Box">
+            <div class="SP_Btn" onclick="refreshPosList()" title="Refresh">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                    <path
+                        d="M454.7 288.1c-12.78-3.75-26.06 3.594-29.75 16.31C403.3 379.9 333.8 432 255.1 432c-66.53 0-126.8-38.28-156.5-96h100.4c13.25 0 24-10.75 24-24S213.2 288 199.9 288h-160c-13.25 0-24 10.75-24 24v160c0 13.25 10.75 24 24 24s24-10.75 24-24v-102.1C103.7 436.4 176.1 480 255.1 480c99 0 187.4-66.31 215.1-161.3C474.8 305.1 467.4 292.7 454.7 288.1zM472 16C458.8 16 448 26.75 448 40v102.1C408.3 75.55 335.8 32 256 32C157 32 68.53 98.31 40.91 193.3C37.19 206 44.5 219.3 57.22 223c12.84 3.781 26.09-3.625 29.75-16.31C108.7 132.1 178.2 80 256 80c66.53 0 126.8 38.28 156.5 96H312C298.8 176 288 186.8 288 200S298.8 224 312 224h160c13.25 0 24-10.75 24-24v-160C496 26.75 485.3 16 472 16z" />
+                </svg>
+            </div>
+            <div class="SP_Btn" id="SP_Btn_Add_Pos" title="Add coordinates at player's location">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                    <path
+                        d="M232 344V280H168C154.7 280 144 269.3 144 256C144 242.7 154.7 232 168 232H232V168C232 154.7 242.7 144 256 144C269.3 144 280 154.7 280 168V232H344C357.3 232 368 242.7 368 256C368 269.3 357.3 280 344 280H280V344C280 357.3 269.3 368 256 368C242.7 368 232 357.3 232 344zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z" />
+                </svg>
+            </div>
+            <div class="SP_Btn" id="SP_Btn_TP" title="Transfer to the selected location">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                    <path
+                        d="M120 288c7.375 0 14.25-3.375 18.88-9.125L192 211.3V320H176C167.2 320 160 327.2 160 336S167.2 352 176 352h160c8.844 0 16-7.156 16-16S344.8 320 336 320H320V211.3l53.13 67.63c8.25 10.38 23.25 12.12 33.75 4c10.38-8.25 12.12-23.25 4-33.75L332.5 149.4C321.9 135.9 305.6 128 288.4 128H223.5c-17.12 0-33.38 7.875-44 21.38L101.1 249.1C95.38 256.4 94.38 266.3 98.38 274.5S110.8 288 120 288zM336 384h-160C167.2 384 160 391.2 160 400S167.2 416 176 416h160c8.844 0 16-7.156 16-16S344.8 384 336 384zM256 96c26.5 0 48-21.5 48-48S282.5 0 256 0S208 21.5 208 48S229.5 96 256 96zM93.75 364.4L64 352l-12.38-29.75C50.88 320.9 49.5 320 48 320s-2.875 .875-3.625 2.25L32 352l-29.75 12.38C.875 365.1 0 366.5 0 368s.875 2.875 2.25 3.625L32 384l12.38 29.75C45.13 415.1 46.5 416 48 416s2.875-.875 3.625-2.25L64 384l29.75-12.38C95.13 370.9 96 369.5 96 368S95.13 365.1 93.75 364.4zM509.8 172.4L480 160l-12.38-29.75C466.9 128.9 465.5 128 464 128s-2.875 .875-3.625 2.25L448 160l-29.75 12.38C416.9 173.1 416 174.5 416 176s.875 2.875 2.25 3.625L448 192l12.38 29.75C461.1 223.1 462.5 224 464 224s2.875-.875 3.625-2.25L480 192l29.75-12.38C511.1 178.9 512 177.5 512 176S511.1 173.1 509.8 172.4zM392 464H352c0-8.844-7.156-16-16-16h-160C167.2 448 160 455.2 160 464H120C106.7 464 96 474.7 96 488C96 501.3 106.7 512 120 512h272c13.25 0 24-10.75 24-24C416 474.7 405.3 464 392 464z" />
+                </svg>
+            </div>
+            <div class="SP_Btn" id="SP_Btn_Rm_This" title="Delete the selected location">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                    <path
+                        d="M201.4 128L212.7 116.7C215.7 113.7 219.8 112 223.1 112H288C292.2 112 296.3 113.7 299.3 116.7L310.6 128H352C360.8 128 368 135.2 368 144C368 152.8 360.8 160 352 160H159.1C151.2 160 143.1 152.8 143.1 144C143.1 135.2 151.2 128 159.1 128H201.4zM352 192L338.4 354.7C337.1 371.2 323.2 384 306.6 384H205.4C188.8 384 174.9 371.2 173.6 354.7L160 192H352zM512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z" />
+                </svg>
+            </div>
+            <div class="SP_Btn" id="SP_Btn_Rm_All" title="Delete all">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                    <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                    <path
+                        d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0H64C28.66 0 0 28.65 0 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.836 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h160L224 128c0 17.67 14.33 32 32 32H336V448zM239 239L192 286.1L144.1 239c-9.375-9.375-24.56-9.375-33.94 0s-9.375 24.56 0 33.94L158.1 320l-47.03 47.03c-9.375 9.375-9.375 24.56 0 33.94c9.375 9.371 24.55 9.379 33.94 0L192 353.9l47.03 47.03c9.375 9.371 24.55 9.379 33.94 0c9.375-9.375 9.375-24.56 0-33.94L225.9 320l47.03-47.03c9.375-9.375 9.375-24.56 0-33.94S248.4 229.7 239 239z" />
+                </svg>
+            </div>
+            <div class="SP_Btn" id="SP_Btn_Rm_First" title="Delete first">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                    <path
+                        d="M264 479.1C263.4 479.1 262.7 480 262.1 480H153.9C134.8 480 116.5 472.4 103 458.9L31.03 386.9C2.912 358.8 2.912 313.2 31.03 285.1L253.1 63.03C281.2 34.91 326.8 34.91 354.9 63.03L480.1 189.1C509.1 217.2 509.1 262.8 480.1 290.9L339.9 432H488C501.3 432 512 442.7 512 456C512 469.3 501.3 480 488 480L264 479.1zM64.97 352.1L136.1 424.1C141.5 429.5 147.6 432 153.9 432H262.1C268.4 432 274.5 429.5 279 424.1L344 360L184 200L64.97 319C55.6 328.4 55.6 343.6 64.97 352.1zM31.03 285.1L64.97 319z" />
+                </svg>
+                F
+            </div>
+            <div class="SP_Btn" id="SP_Btn_Rm_Last" title="Delete last">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                    <path
+                        d="M264 479.1C263.4 479.1 262.7 480 262.1 480H153.9C134.8 480 116.5 472.4 103 458.9L31.03 386.9C2.912 358.8 2.912 313.2 31.03 285.1L253.1 63.03C281.2 34.91 326.8 34.91 354.9 63.03L480.1 189.1C509.1 217.2 509.1 262.8 480.1 290.9L339.9 432H488C501.3 432 512 442.7 512 456C512 469.3 501.3 480 488 480L264 479.1zM64.97 352.1L136.1 424.1C141.5 429.5 147.6 432 153.9 432H262.1C268.4 432 274.5 429.5 279 424.1L344 360L184 200L64.97 319C55.6 328.4 55.6 343.6 64.97 352.1zM31.03 285.1L64.97 319z" />
+                </svg>
+                L
+            </div>
+            <div class="SP_PosList">
+                <span>Pos.0 xxx, yyy, zzz</span>
+            </div>
+        </div>
+
+        <!--RE div-->
+        <div class="RE_Box">
+            <div class="RE_Title">Replay</div>
+            <div class="RE_Mode">Mode: <span id="RE_Mode_span">Linear</span></div>
+            <div class="RE_Pos">Pos: <span id="RE_Pos_span">Any</span></div>
+            <div class="RE_Speed" title="Command/s">Speed: <input id="RE_Speed_Input" value="20" /></div>
+            <div class="RE_Accuracy" title="Command/block">Accuracy: <input id="RE_Accuracy_Input" value="10" /></div>
+            <div class="RE_Start">Start Replay</div>
+        </div>
+
+        <!--FS Div-->
+        <div class="FS_Box">
+            <div class="FS_FileSelector">
+                <div class="FS_Title">File manager </div>
+                <div class="FS_File_Box">
+                    <div>
+
+                        xxx.midi
+                    </div>
+                    <div>xxx.midi </div>
+                    <div>xxx.midi </div>
+                </div>
+            </div>
+            <div class="FS_Details">
+                <div class="FS_Details_Path">/home/ubuntu</div>
+                <div class="FS_Details_Data">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                        <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                        <path
+                            d="M572.6 270.3l-96 192C471.2 473.2 460.1 480 447.1 480H64c-35.35 0-64-28.66-64-64V96c0-35.34 28.65-64 64-64h117.5c16.97 0 33.25 6.742 45.26 18.75L275.9 96H416c35.35 0 64 28.66 64 64v32h-48V160c0-8.824-7.178-16-16-16H256L192.8 84.69C189.8 81.66 185.8 80 181.5 80H64C55.18 80 48 87.18 48 96v288l71.16-142.3C124.6 230.8 135.7 224 147.8 224h396.2C567.7 224 583.2 249 572.6 270.3z" />
+                    </svg>
+                    <span>XXX.mid</span>
+                    <span>88.88KB</span>
+                    <div>Play</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+
+<!--Popup script-->
+<script src="/popup.js"></script>
+
+<!--Clock Script-->
+<script>
+    var clock = document.getElementsByClassName("clock")[0];
+    var hr = document.getElementById("hr"); //时
+    var mn = document.getElementById("mn"); //分
+    var sc = document.getElementById("sc"); //秒
+    function startClock() {
+        var date = new Date();
+        var HH = (date.getHours() % 12);
+        var MM = date.getMinutes();
+        var SS = date.getSeconds();
+        hr.style.transform = "rotate(" + (HH * 30) + "deg)";
+        mn.style.transform = "rotate(" + (MM * 6) + "deg)";
+        sc.style.transform = "rotate(" + (SS * 6) + "deg)";
+    }
+    function changeClockState() {
+        clock.style.display = clock.style.display === "flex" ? "none" : "flex";
+        if (clock.style.display === "none") {
+            clearInterval(clockInterval);
+        } else {
+            clockInterval = setInterval(startClock, 1000);
+        }
+    }
+</script>
+
+<!--Rain Script-->
+<script>
+    var rainBox = document.getElementById("rainBox");
+    var rainBoxSize = [rainBox.clientHeight, rainBox.clientWidth];
+    var rainList = [];
+    var rainInterval;
+    var rainState = 0;
+    function chanegRainState() {
+        rainState++;
+        if (rainState > 1) rainState = 0;
+        switch (rainState) {
+            case 0:
+                clearInterval(rainInterval);
+                rainBox.innerHTML = "";
+                rainList = [];
+                break;
+            case 1:
+                rainInterval = setInterval(() => {
+                    startRain();
+                    for (var i = 0; i < rainList.length; i++) {
+                        var rain = rainList[i];
+                        var top = parseInt(rain.rain.style.top);
+                        rain.race += 2;
+                        rain.rain.style.top = top + rain.race + "px";
+                        if (top > rainBoxSize[0]) {
+                            rainBox.removeChild(rain.rain);
+                            rainList.splice(i, 1);
+                        }
+                    }
+                }, 50);
+                break;
+            default:
+                break;
+        }
+    }
+    function startRain() {
+        var rain = document.createElement("div");
+        rain.classList.add("rain");
+        rain.style.top = "0";
+        rain.style.left = Math.random() * rainBoxSize[1] + "px";
+        rain.style.opacity = Math.random();
+        rainBox.appendChild(rain);
+        rainList.push({
+            rain: rain,
+            race: 2
+        });
+    }
+</script>
+
+<!--Block Script-->
+<script>
+    var blockBox = document.getElementsByClassName("blockBox")[0];
+    var block_width = blockBox.offsetWidth;
+    var block_height = blockBox.offsetHeight;
+    var clockInterval;
+    var webcolor = [
+        "#1abc9c", "#16a085",
+        "#f1c40f", "#f39c12",
+        "#2ecc71", "#27ae60",
+        "#e67e22", "#d35400",
+        "#3498db", "#2980b9",
+        "#e74c3c", "rgb(255, 118, 55)",
+        "#9b59b6", "#8e44ad",
+        "#ecf0f1", "#bdc3c7",
+        "#34495e", "#2c3e50",
+        "#95a5a6", "#7f8c8d"
+    ];
+    function generateBlock() {
+        for (var i = 0; i < 15; i++) {
+            var block = document.createElement("div");
+            block.style.left = Math.random() * block_width + "px";
+            block.style.top = Math.random() * block_height + "px";
+            block.style.width = Math.random() * 30 + 50 + "px";
+            block.style.height = Math.random() * 30 + 50 + "px";
+            block.style.transform = "rotate(" + Math.random() * 180 + "deg)";
+            block.style.opacity = Math.random() * .1 + .1 + "";
+            block.style.backgroundColor = webcolor[parseInt(Math.random() * webcolor.length)];
+            if (i % 2 === 0) block.style.clipPath = "polygon(0 0, 0% 100%, 100% 50%)";
+            block.classList.add("block");
+            blockBox.appendChild(block);
+        }
+    }
+    generateBlock();
+</script>
+
+<!--Function Script-->
+<script>
+    function refreshClColor() {
+        SC_Messages.childNodes.forEach(function (node) {
+            if (node.nodeType !== 3) {
+                node.className = CL_Color;
+            }
+        });
+    }
+    function changeClStyle() {
+        CL_Style++;
+        if (CL_Style > 3) CL_Style = 0;
+        switch (CL_Style) {
+            case 0:
+                CL_Color = "SC_Messages_Div";
+                break;
+            case 1:
+                CL_Color = "SC_Messages_Div_1";
+                break;
+            case 2:
+                CL_Color = "SC_Messages_Div_2";
+                break;
+            case 3:
+                CL_Color = "SC_Messages_Div_3";
+                break;
+            default:
+                break;
+        }
+        refreshClColor();
+    }
+    function reseize() {
+        if (width <= 800) {
+            SC_Box.style.width = "300px";
+            SP_Box.style.width = "300px";
+            FS_Box.style.width = "300px";
+        } else if (width > 800) {
+            SC_Box.style.width = "500px";
+            SP_Box.style.width = "500px";
+        } else if (width > 1000) {
+            SC_Box.style.width = "700px";
+        }
+    }
+    function displayLog(log) {
+        var arr = log.split("\n");
+        for (var i = 0; i < arr.length; i++) {
+            var div = document.createElement("div");
+            div.innerHTML = arr[i].replace(/ /g, "&#160;").replace(/>/g, "&gt;").replace(/</g, "&lt;");
+            div.className = CL_Color;
+            SC_Messages.appendChild(div);
+        }
+        setTimeout(() => {
+            SC_Messages.scrollTo(0, SC_Messages.scrollHeight);
+        }, 300);
+    }
+    function uuid() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0,
+                v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+    function parseCookie() {
+        var cookie = document.cookie.replace(/ /g, "").split(";");
+        var json = {};
+        for (var i = 0; i < cookie.length; i++) {
+            var arr = cookie[i].split("=");
+            json[arr[0]] = arr[1];
+        }
+        return json;
+    }
+    class wwsFormat {
+        uuid = uuid();
+        constructor(type, value, uuid) {
+            this.type = type;
+            this.value = value;
+            this.uuid = uuid ? uuid : this.uuid;
+        }
+    }
+    function refreshPlayerList() {
+        if (SP_Box.style.display === "block") refreshPosList(true);
+        if (!closed)
+            ws.sendx(new wwsFormat("GET_LIST", null), function (json) {
+                var players = json.value;
+                // console.log(players, players.length);
+                if (players.length === 0) {
+                    bound.id = null;
+                    bound.name = null;
+                    PS_CurrentPlayer.innerHTML = "No Player Bound";
+                    PS_PlayerDiv.innerHTML = "";
+                } else {
+                    PS_PlayerDiv.innerHTML = "";
+                    var targetOnline = false;
+                    for (let i = 0; i < players.length; i++) {
+                        if (players[i][1] === bound.id) targetOnline = true;
+                        let player_box = document.createElement("div");
+                        player_box.className = "PS_PlayerBox";
+                        player_box.innerHTML = `${i}.${players[i][0]} [${players[i][1]}]`;
+                        player_box.onclick = function () {
+                            bound.id = players[i][1];
+                            bound.name = players[i][0];
+                            PS_CurrentPlayer.innerHTML = `${bound.name} [${bound.id}]`;
+                            popup("Bound player: " + `${bound.name} [${bound.id}]`);
+                            ws.sendx(new wwsFormat("TC", "bind -id=" + bound.id));
+                        }
+                        PS_PlayerDiv.appendChild(player_box);
+                    }
+                    if (!targetOnline && bound.name !== null) {
+                        bound.id = null;
+                        bound.name = null;
+                        PS_CurrentPlayer.innerHTML = "No Player Bound";
+                        popup("Player bound offline...");
+                    }
+                }
+            });
+    }
+    function refreshPosList(auto) {
+        if (bound.id) {
+            ws.sendx(new wwsFormat("GET_POS_LIST", bound.id), function (json) {
+                SP_PosList.innerHTML = "";
+                var arr = json.value;
+                posData.posList = arr;
+                for (let i = 0; i < arr.length; i++) {
+                    let span = document.createElement("span");
+                    if ((i + 1) % 2 === 0) span.style.backgroundColor = "rgb(248, 248, 248)";
+                    span.innerHTML = `Pos.${i} xyz &#160; ${arr[i].x.toFixed(2)}, ${arr[i].y.toFixed(2)}, ${arr[i].z.toFixed(2)}`;
+                    span.onclick = function () {
+                        posData.selectedPosIndex = i;
+                        span.style.borderWidth = "2px";
+                        SP_PosList.childNodes.forEach(function (node) {
+                            if (node.nodeType !== 3 && node !== span) {
+                                node.style.borderWidth = "0";
+                            }
+                        });
+                    }
+                    SP_PosList.appendChild(span);
+                }
+            });
+        } else if (!auto) {
+            var span = document.createElement("span");
+            span.innerHTML = "No bound player";
+            SP_PosList.appendChild(span);
+        }
+    }
+    function changePosDisplayState() {
+        var display = SP_Box.style.display;
+        if (display === "block") {
+            SP_Box.style.display = "none";
+        } else {
+            SP_Box.style.display = "block";
+        }
+    }
+    function changeReplayState() {
+        if (RE_Box.style.display === "block") {
+            RE_Box.style.display = "none";
+        } else {
+            RE_Box.style.display = "block";
+        }
+    }
+    function changeFileSelectorState() {
+        if (FS_Box.style.display === "flex") {
+            FS_Box.style.display = "none";
+        } else {
+            FS_Box.style.display = "flex";
+        }
+    }
+</script>
+<script>
+    var PS_CurrentPlayer = document.getElementsByClassName("PS_CurrentPlayer")[0];
+    var PS_PlayerDiv = document.getElementsByClassName("PS_PlayerDiv")[0];
+    var PS_RefreshSVG = document.getElementsByClassName("PS_RefreshSVG")[0];
+    var SC_Box = document.getElementsByClassName("SC_Box")[0];
+    var SC_Input = document.getElementsByClassName("SC_Input")[0];
+    var SC_DeleteHistory = document.getElementById("SC_DeleteHistory");
+    var SC_Send = document.getElementById("SC_Send");
+    var SC_Messages = document.getElementsByClassName("SC_Messages")[0];
+    var SP_Box = document.getElementsByClassName("SP_Box")[0];
+    var SP_PosList = document.getElementsByClassName("SP_PosList")[0];
+
+    var SP_Btn_Add_Pos = document.getElementById("SP_Btn_Add_Pos");
+    var SP_Btn_Rm_First = document.getElementById("SP_Btn_Rm_First");
+    var SP_Btn_Rm_Last = document.getElementById("SP_Btn_Rm_Last");
+    var SP_Btn_Rm_This = document.getElementById("SP_Btn_Rm_This");
+    var SP_Btn_Rm_All = document.getElementById("SP_Btn_Rm_All");
+    var SP_Btn_TP = document.getElementById("SP_Btn_TP");
+
+    var RE_Box = document.getElementsByClassName("RE_Box")[0];
+    var RE_Mode_span = document.getElementById("RE_Mode_span");
+    var RE_Pos_span = document.getElementById("RE_Pos_span");
+    var RE_Start = document.getElementsByClassName("RE_Start")[0];
+    var RE_Speed_Input = document.getElementById("RE_Speed_Input");
+    var RE_Accuracy_Input = document.getElementById("RE_Accuracy_Input");
+
+    var FS_Box = document.getElementsByClassName("FS_Box")[0];
+    var FS_File_Box = document.getElementsByClassName("FS_File_Box")[0];
+    var FS_Details_Path = document.getElementsByClassName("FS_Details_Path")[0];
+    var FS_Details_Data = document.getElementsByClassName("FS_Details_Data")[0];
+    var svg_dir_open = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M572.6 270.3l-96 192C471.2 473.2 460.1 480 447.1 480H64c-35.35 0-64-28.66-64-64V96c0-35.34 28.65-64 64-64h117.5c16.97 0 33.25 6.742 45.26 18.75L275.9 96H416c35.35 0 64 28.66 64 64v32h-48V160c0-8.824-7.178-16-16-16H256L192.8 84.69C189.8 81.66 185.8 80 181.5 80H64C55.18 80 48 87.18 48 96v288l71.16-142.3C124.6 230.8 135.7 224 147.8 224h396.2C567.7 224 583.2 249 572.6 270.3z"/></svg>`;
+    var svg_dir = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M447.1 96h-172.1L226.7 50.75C214.7 38.74 198.5 32 181.5 32H63.1c-35.35 0-64 28.66-64 64v320c0 35.34 28.65 64 64 64h384c35.35 0 64-28.66 64-64V160C511.1 124.7 483.3 96 447.1 96zM463.1 416c0 8.824-7.178 16-16 16h-384c-8.822 0-16-7.176-16-16V96c0-8.824 7.178-16 16-16h117.5c4.273 0 8.293 1.664 11.31 4.688L255.1 144h192c8.822 0 16 7.176 16 16V416z"/></svg>`;
+    var svg_file = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 64C0 28.65 28.65 0 64 0H229.5C246.5 0 262.7 6.743 274.7 18.75L365.3 109.3C377.3 121.3 384 137.5 384 154.5V448C384 483.3 355.3 512 320 512H64C28.65 512 0 483.3 0 448V64zM336 448V160H256C238.3 160 224 145.7 224 128V48H64C55.16 48 48 55.16 48 64V448C48 456.8 55.16 464 64 464H320C328.8 464 336 456.8 336 448z"/></svg>`;
+    var svg_js = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM243.8 381.4c0 43.6-25.6 63.5-62.9 63.5-33.7 0-53.2-17.4-63.2-38.5l34.3-20.7c6.6 11.7 12.6 21.6 27.1 21.6 13.8 0 22.6-5.4 22.6-26.5V237.7h42.1v143.7zm99.6 63.5c-39.1 0-64.4-18.6-76.7-43l34.3-19.8c9 14.7 20.8 25.6 41.5 25.6 17.4 0 28.6-8.7 28.6-20.8 0-14.4-11.4-19.5-30.7-28l-10.5-4.5c-30.4-12.9-50.5-29.2-50.5-63.5 0-31.6 24.1-55.6 61.6-55.6 26.8 0 46 9.3 59.8 33.7L368 290c-7.2-12.9-15-18-27.1-18-12.3 0-20.1 7.8-20.1 18 0 12.6 7.8 17.7 25.9 25.6l10.5 4.5c35.8 15.3 55.9 31 55.9 66.2 0 37.8-29.8 58.6-69.7 58.6z"/></svg>`;
+    var svg_ts = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M200 32H120C89.07 32 64 57.07 64 88v77.5c0 10.56-4.197 20.7-11.67 28.17L7 239C2.5 243.5 0 249.6 0 256c0 6.375 2.5 12.5 7 17l45.33 45.33C59.8 325.8 64 335.9 64 346.5V424C64 454.9 89.07 480 120 480h80C213.3 480 224 469.3 224 456S213.3 432 200 432H120c-4.4 0-8-3.6-8-8v-77.5c0-23.44-9.337-45.91-25.95-62.45L57.88 256l28.18-28.05C102.7 211.4 112 188.9 112 165.5V88c0-4.4 3.6-8 8-8h80C213.3 80 224 69.25 224 56S213.3 32 200 32zM569 239l-45.33-45.33C516.2 186.2 512 176.1 512 165.5V88C512 57.07 486.9 32 456 32h-80C362.7 32 352 42.75 352 55.1S362.7 80 375.1 80H456c4.4 0 8 3.6 8 8v77.5c0 23.37 9.284 45.78 25.81 62.31L517.1 256l-28.19 28.19C473.3 300.7 464 323.1 464 346.5V424c0 4.4-3.6 8-8 8h-80C362.7 432 352 442.7 352 455.1S362.7 480 375.1 480H456c30.93 0 56-25.07 56-56v-77.5c0-10.56 4.197-20.7 11.67-28.17L569 273C573.5 268.5 576 262.4 576 256C576 249.6 573.5 243.5 569 239z"/></svg>`;
+    var svg_html = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M162.1 257.8c-7.812-7.812-20.47-7.812-28.28 0l-48 48c-7.812 7.812-7.812 20.5 0 28.31l48 48C137.8 386.1 142.9 388 148 388s10.23-1.938 14.14-5.844c7.812-7.812 7.812-20.5 0-28.31L128.3 320l33.86-33.84C169.1 278.3 169.1 265.7 162.1 257.8zM365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0H64C28.65 0 0 28.65 0 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h160L224 128c0 17.67 14.33 32 32 32h79.1V448zM221.9 257.8c-7.812 7.812-7.812 20.5 0 28.31L255.7 320l-33.86 33.84c-7.812 7.812-7.812 20.5 0 28.31C225.8 386.1 230.9 388 236 388s10.23-1.938 14.14-5.844l48-48c7.812-7.812 7.812-20.5 0-28.31l-48-48C242.3 250 229.7 250 221.9 257.8z"/></svg>`;
+    var svg_music = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0H64C28.65 0 0 28.65 0 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h160L224 128c0 17.67 14.33 32 32 32h79.1V448zM144 255.3V370C138.8 368.8 133.4 368 128 368c-26.5 0-48 14.38-48 32s21.5 32 48 32s48-14.38 48-32V299.1l96-37.5V338C266.8 336.8 261.4 336 256 336c-26.5 0-48 14.38-48 32s21.5 32 48 32s48-14.38 48-32v-160c0-5.125-2.375-9.875-6.5-12.88S288 191.3 283.3 192.8l-128 47.25C148.5 242.1 144 248.3 144 255.3z"/></svg>`;
+    var svg_txt = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0L64-.0001c-35.35 0-64 28.65-64 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h160L224 128c0 17.67 14.33 32 32 32h79.1V448zM96 280C96 293.3 106.8 304 120 304h144C277.3 304 288 293.3 288 280S277.3 256 264 256h-144C106.8 256 96 266.8 96 280zM264 352h-144C106.8 352 96 362.8 96 376s10.75 24 24 24h144c13.25 0 24-10.75 24-24S277.3 352 264 352z"/></svg>`;
+    var svg_pdf = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M320 464C328.8 464 336 456.8 336 448V416H384V448C384 483.3 355.3 512 320 512H64C28.65 512 0 483.3 0 448V416H48V448C48 456.8 55.16 464 64 464H320zM256 160C238.3 160 224 145.7 224 128V48H64C55.16 48 48 55.16 48 64V192H0V64C0 28.65 28.65 0 64 0H229.5C246.5 0 262.7 6.743 274.7 18.75L365.3 109.3C377.3 121.3 384 137.5 384 154.5V192H336V160H256zM88 224C118.9 224 144 249.1 144 280C144 310.9 118.9 336 88 336H80V368C80 376.8 72.84 384 64 384C55.16 384 48 376.8 48 368V240C48 231.2 55.16 224 64 224H88zM112 280C112 266.7 101.3 256 88 256H80V304H88C101.3 304 112 293.3 112 280zM160 240C160 231.2 167.2 224 176 224H200C226.5 224 248 245.5 248 272V336C248 362.5 226.5 384 200 384H176C167.2 384 160 376.8 160 368V240zM192 352H200C208.8 352 216 344.8 216 336V272C216 263.2 208.8 256 200 256H192V352zM336 224C344.8 224 352 231.2 352 240C352 248.8 344.8 256 336 256H304V288H336C344.8 288 352 295.2 352 304C352 312.8 344.8 320 336 320H304V368C304 376.8 296.8 384 288 384C279.2 384 272 376.8 272 368V240C272 231.2 279.2 224 288 224H336z"/></svg>`;
+    var svg_ppt = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0H64C28.65 0 0 28.65 0 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h160L224 128c0 17.67 14.33 32 32 32h79.1V448zM200 224H128C119.2 224 112 231.2 112 240v168c0 13.25 10.75 24 24 24S160 421.3 160 408v-32h44c44.21 0 79.73-37.95 75.69-82.98C276.1 253.2 240 224 200 224zM204 328H160V272h44c15.44 0 28 12.56 28 28S219.4 328 204 328z"/></svg>`;
+    var svg_video = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0H64C28.65 0 0 28.65 0 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h160L224 128c0 17.67 14.33 32 32 32h79.1V448zM240 288c0-17.67-14.33-32-32-32h-96c-17.67 0-32 14.33-32 32v96c0 17.67 14.33 32 32 32h96c17.67 0 32-14.33 32-32v-16.52l43.84 30.2C292.3 403.5 304 397.6 304 387.4V284.6c0-10.16-11.64-16.16-20.16-10.32L240 304.5V288z"/></svg>`;
+    var svg_css = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 32l34.9 395.8L192 480l157.1-52.2L384 32H0zm313.1 80l-4.8 47.3L193 208.6l-.3.1h111.5l-12.8 146.6-98.2 28.7-98.8-29.2-6.4-73.9h48.9l3.2 38.3 52.6 13.3 54.7-15.4 3.7-61.6-166.3-.5v-.1l-.2.1-3.6-46.3L193.1 162l6.5-2.7H76.7L70.9 112h242.2z"/></svg>`;
+    var svg_word = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0H64C28.65 0 0 28.65 0 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h160L224 128c0 17.67 14.33 32 32 32h79.1V448zM214.6 248C211.3 238.4 202.2 232 192 232s-19.25 6.406-22.62 16L144.7 318.1l-25.89-77.66C114.6 227.8 101 221.2 88.41 225.2C75.83 229.4 69.05 243 73.23 255.6l48 144C124.5 409.3 133.5 415.9 143.8 416c10.17 0 19.45-6.406 22.83-16L192 328.1L217.4 400C220.8 409.6 229.8 416 240 416c10.27-.0938 19.53-6.688 22.77-16.41l48-144c4.188-12.59-2.594-26.16-15.17-30.38c-12.61-4.125-26.2 2.594-30.36 15.19l-25.89 77.66L214.6 248z"/></svg>`;
+    var svg_image = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0H64C28.65 0 0 28.65 0 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h160L224 128c0 17.67 14.33 32 32 32h79.1V448zM215.3 292c-4.68 0-9.051 2.34-11.65 6.234L164 357.8l-11.68-17.53C149.7 336.3 145.3 334 140.7 334c-4.682 0-9.053 2.34-11.65 6.234l-46.67 70c-2.865 4.297-3.131 9.82-.6953 14.37C84.09 429.2 88.84 432 93.1 432h196c5.163 0 9.907-2.844 12.34-7.395c2.436-4.551 2.17-10.07-.6953-14.37l-74.67-112C224.4 294.3 220 292 215.3 292zM128 288c17.67 0 32-14.33 32-32S145.7 224 128 224S96 238.3 96 256S110.3 288 128 288z"/></svg>`;
+    var svg_zip = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M365.3 93.38l-74.63-74.64C278.6 6.742 262.3 0 245.4 0L64-.0001c-35.35 0-64 28.65-64 64l.0065 384c0 35.34 28.65 64 64 64H320c35.2 0 64-28.8 64-64V138.6C384 121.7 377.3 105.4 365.3 93.38zM336 448c0 8.836-7.164 16-16 16H64.02c-8.838 0-16-7.164-16-16L48 64.13c0-8.836 7.164-16 16-16h48V64h64V48.13h48.01L224 128c0 17.67 14.33 32 32 32h79.1V448zM176 96h-64v32h64V96zM176 160h-64v32h64V160zM176 224h-64l-30.56 116.5C73.51 379.5 103.7 416 144.3 416c40.26 0 70.45-36.3 62.68-75.15L176 224zM160 368H128c-8.836 0-16-7.164-16-16s7.164-16 16-16h32c8.836 0 16 7.164 16 16S168.8 368 160 368z"/></svg>`;
+    var svg_windows = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 93.7l183.6-25.3v177.4H0V93.7zm0 324.6l183.6 25.3V268.4H0v149.9zm203.8 28L448 480V268.4H203.8v177.9zm0-380.6v180.1H448V32L203.8 65.7z"/></svg>`;
+
+    function refreshFile() {
+        var path = "/" + Rimspace_Directory.join("/");
+        ws.sendx(new wwsFormat("READDIR", path), function (json) {
+            var files = json.value;
+            if (files) {
+                FS_Details_Path.innerHTML = path;
+                FS_File_Box.innerHTML = "";
+                if (Rimspace_Directory.length > 0) {
+                    var div = document.createElement("div");
+                    div.innerHTML = `../`;
+                    div.ondblclick = function () {
+                        FS_Details_Data.innerHTML = "";
+                        Rimspace_Directory.pop();
+                        refreshFile();
+                    }
+                    FS_File_Box.appendChild(div);
+                }
+                if (files.length > 200) {
+                    popup("The number of files is greater than 200", 5000);
+                    popup("Only part of the content is displayed", 5000);
+                }
+                for (let i = 0; i < (files.length > 200 ? 200 : files.length); i++) {
+                    let div = document.createElement("div");
+                    div.title = files[i].name;
+                    let fileSvg = null;
+                    if (files[i].isdir) {
+                        div.onmouseenter = function () {
+                            div.innerHTML = svg_dir_open + files[i].name;
+                        }
+                        div.onmouseleave = function () {
+                            div.innerHTML = svg_dir + files[i].name;
+                        }
+                        div.innerHTML += svg_dir;
+                        div.ondblclick = function () {
+                            FS_Details_Data.innerHTML = "";
+                            Rimspace_Directory.push(files[i].name);
+                            refreshFile();
+                        }
+                    } else {
+                        let filename = files[i].name;
+                        let extended = filename.slice(filename.lastIndexOf("."));
+                        switch (extended) {
+                            case ".js":
+                                fileSvg = svg_js;
+                                break;
+                            case ".ts":
+                                if (files[i].size > 1024 * 1024) {
+                                    fileSvg = svg_video;
+                                } else {
+                                    fileSvg = svg_ts;
+                                }
+                                break;
+                            case ".html":
+                            case ".json":
+                                fileSvg = svg_html;
+                                break;
+                            case ".css":
+                                fileSvg = svg_css;
+                                break;
+                            case ".ppt":
+                            case ".pptx":
+                                fileSvg = svg_ppt;
+                                break;
+                            case ".pdf":
+                                fileSvg = svg_pdf;
+                                break;
+                            case ".word":
+                            case ".docx":
+                            case ".dot":
+                                fileSvg = svg_word;
+                                break;
+                            case ".mid":
+                            case ".mp3":
+                            case ".wav":
+                            case ".aac":
+                            case ".m4a":
+                            case ".mp3":
+                            case ".ogg":
+                                fileSvg = svg_music;
+                                break;
+                            case ".mp4":
+                            case ".avi":
+                            case ".wmv":
+                            case ".mpeg":
+                            case ".mov":
+                            case ".flv":
+                                fileSvg = svg_video;
+                                break;
+                            case ".txt":
+                            case ".md":
+                                fileSvg = svg_txt;
+                                break;
+                            case ".ico":
+                            case ".png":
+                            case ".svg":
+                            case ".jpeg":
+                            case ".jpg":
+                            case ".gif":
+                            case ".bmp":
+                            case ".tga":
+                                fileSvg = svg_image;
+                                break;
+                            case ".zip":
+                            case ".7z":
+                            case ".rar":
+                            case ".gz":
+                            case ".tar":
+                            case ".bz":
+                            case ".apk":
+                            case ".jar":
+                            case ".xz":
+                                fileSvg = svg_zip;
+                                break;
+                            case ".exe":
+                            case ".iso":
+                            case ".cmd":
+                            case ".bat":
+                                fileSvg = svg_windows;
+                                break;
+                            default:
+                                fileSvg = svg_file;
+
+                                break;
+                        }
+
+                        div.innerHTML += fileSvg;
+
+
+                        div.onclick = function () {
+                            FS_Details_Data.innerHTML = fileSvg;
+                            var size = [files[i].size / 1024, "KB"];
+                            if (size[0] / 1024 > 1) {
+                                size[0] /= 1024;
+                                size[1] = "MB";
+                            } else if (size[0] / 1024 / 1024 > 1) {
+                                size[0] /= 1024 * 1024;
+                                size[1] = "GB";
+                            }
+                            var span1 = document.createElement("span");
+                            span1.innerHTML = files[i].name;
+                            var span2 = document.createElement("span");
+                            span2.innerHTML = size[0].toFixed(2) + " " + size[1];
+                            FS_Details_Data.appendChild(span1);
+                            FS_Details_Data.appendChild(span2);
+                            if (extended === ".mid") {
+                                var div = document.createElement("div");
+                                div.innerHTML = "Play Midi";
+                                div.onclick = function () {
+                                    ws.sendx(new wwsFormat("TC", `wexec mid -p="/${Rimspace_Directory.join("/")}" "${filename}"`));
+                                    FS_Details_Data.innerHTML = "";
+                                    popup("Command executed", 2000);
+                                }
+                                FS_Details_Data.appendChild(div);
+                            } else if (extended === ".rmst" || extended === ".mcfunction") {
+                                var div = document.createElement("div");
+                                div.innerHTML = "Import &gt;&gt;Pos.0";
+                                div.onclick = function () {
+                                    ws.sendx(new wwsFormat("TC", `wexec import -p="/${Rimspace_Directory.join("/")}" "${filename}"`));
+                                    FS_Details_Data.innerHTML = "";
+                                    popup("Command executed", 2000);
+                                }
+                                FS_Details_Data.appendChild(div);
+                            }
+                            else if (extended === ".png" || extended === ".gif") {
+                                var div = document.createElement("div");
+                                div.innerHTML = "Pixel &gt;&gt;Pos.0";
+                                div.onclick = function () {
+                                    ws.sendx(new wwsFormat("TC", `wexec pixel -p="/${Rimspace_Directory.join("/")}" "${filename}" -f`));
+                                    FS_Details_Data.innerHTML = "";
+                                    popup("Command executed", 2000);
+                                }
+                                FS_Details_Data.appendChild(div);
+                            }
+                        }
+                    }
+
+                    div.innerHTML += `${files[i].name}`;
+                    FS_File_Box.appendChild(div);
+                }
+            } else {
+                Rimspace_Directory.pop();
+                popup("Server error");
+            }
+        })
+    }
+    RE_Start.onclick = function () {
+        if (bound.id) {
+            var speed = parseInt(RE_Speed_Input.value);
+            var accuracy = parseInt(RE_Accuracy_Input.value);
+            if (speed && accuracy) {
+                ws.sendx(new wwsFormat("TC", `wexec replay -s=${speed} -a=${accuracy}${replayMode === "CURVE" ? " -c" : ""}`));
+                popup("Sending command...", 2000);
+            } else {
+                popup("Invaild Paramater");
+            }
+        } else {
+            popup("No player Bound!");
+        }
+    }
+    RE_Mode_span.onclick = function () {
+        if (replayMode === "LINEAR") {
+            replayMode = "CURVE";
+            RE_Mode_span.style.backgroundColor = "rgba(240, 240, 240, 0.8)";
+            RE_Mode_span.style.color = "rgb(53, 53, 53)";
+            RE_Mode_span.innerHTML = "Curve";
+            RE_Pos_span.innerHTML = "4";
+        } else {
+            replayMode = "LINEAR";
+            RE_Mode_span.style.backgroundColor = "rgba(112, 112, 112, 0.5)";
+            RE_Mode_span.style.color = "#fff";
+            RE_Mode_span.innerHTML = "Linear";
+            RE_Pos_span.innerHTML = "&gt;= 2";
+        }
+    }
+
+    SP_Btn_Add_Pos.onclick = function () {
+        if (bound.id !== null) {
+            ws.sendx(new wwsFormat("TC", "wexec pos add"));
+            setTimeout(() => {
+                refreshPosList();
+            }, 1500);
+        }
+    }
+    SP_Btn_Rm_All.onclick = function () {
+        if (bound.id !== null) {
+            ws.sendx(new wwsFormat("TC", "wexec pos rmall"));
+            setTimeout(() => {
+                refreshPosList();
+            }, 500);
+        }
+    }
+    SP_Btn_Rm_First.onclick = function () {
+        if (bound.id !== null) {
+            ws.sendx(new wwsFormat("TC", "wexec pos rm 0"));
+            setTimeout(() => {
+                refreshPosList();
+            }, 500);
+        }
+    }
+    SP_Btn_Rm_Last.onclick = function () {
+        if (bound.id !== null) {
+            ws.sendx(new wwsFormat("TC", "wexec pos rm"));
+            setTimeout(() => {
+                refreshPosList();
+            }, 500);
+        }
+    }
+    SP_Btn_Rm_This.onclick = function () {
+        if (bound.id !== null && posData.selectedPosIndex !== null) {
+            ws.sendx(new wwsFormat("TC", "wexec pos rm " + posData.selectedPosIndex));
+            setTimeout(() => {
+                refreshPosList();
+            }, 500);
+        }
+    }
+    SP_Btn_TP.onclick = function () {
+        if (bound.id !== null && posData.selectedPosIndex !== null && posData.posList !== null) {
+            var target = posData.posList[posData.selectedPosIndex];
+            // console.log(`exec tp ${target.x} ${target.y} ${target.z} ${target.minecraft_planeDegree} ${target.minecraft_verticalDegree}`);
+            ws.sendx(new wwsFormat("TC", `exec tp ${target.x} ${target.y} ${target.z} ${target.minecraft_planeDegree} ${target.minecraft_verticalDegree}`));
+            setTimeout(() => {
+                refreshPosList();
+            }, 500);
+        }
+    }
+
+
+
+    var width = document.body.getBoundingClientRect().width;
+    var lastRefresh = 0;
+    var closed = true;
+    var CL_Style = 0;
+    var CL_Color = "SC_Messages_Div";
+    var replayMode = "LINEAR";
+    var posData = {
+        selectedPosIndex: null,
+        posList: null
+    }
+    var posFuncDisplay = false;
+    var Rimspace_Directory = null;
+
+    window.onresize = function () {
+        reseize();
+        rainBoxSize = [rainBox.clientHeight, rainBox.clientWidth];
+    }
+
+    SC_DeleteHistory.onclick = function () {
+        SC_Messages.innerHTML = "";
+    }
+    SC_Send.onclick = function () {
+        if (!closed) {
+            var value = SC_Input.value;
+            if (value && !(value[0] === "k" && value[1] === "m")) {
+                ws.sendx(new wwsFormat("TC", value));
+                displayLog(`[Info] > ` + value);
+                SC_Input.value = "";
+            }
+        }
+    }
+    SC_Input.onkeypress = function (ev) {
+        if (ev.keyCode === 13) {
+            SC_Send.onclick();
+        }
+    }
+
+    reseize();
+
+    PS_RefreshSVG.onclick = function () {
+        var now = Date.now();
+        if (now - lastRefresh > 1000) {
+            PS_PlayerDiv.innerHTML = "";
+            setTimeout(() => {
+                refreshPlayerList();
+            }, 100);
+            lastRefresh = now;
+        }
+    };
+    var bound = {
+        id: null,
+        name: null
+    };
+
+    window.onunhandledrejection = function () {
+        popup("ERROR: An uncapped error has occurred", 3000);
+    }
+    window.onerror = function () {
+        popup("ERROR: An error has occurred", 3000);
+    }
+    window.onload = function () {
+
+        if (document.cookie) {
+            var cookies = parseCookie();
+            // console.log(cookies)
+            if (cookies.value && cookies.value !== "null") {
+                popup("Welcome to Rimspace");
+                var ws = new WebSocket("ws://" + window.location.host + "/");
+                window.ws = ws;
+                ws.queue = {};
+                ws.sendx = function (json, callback, obj) {
+                    if (callback instanceof Function) {
+                        this.queue[json.uuid] = {};
+                        this.queue[json.uuid].func = callback;
+                        this.queue[json.uuid].time = new Date().getTime();
+                        this.queue[json.uuid].obj = obj;
+                    }
+                    this.send(JSON.stringify(json));
+                }
+                ws.onmessage = function (ev) {
+                    // console.log(ev);
+                    var json = JSON.parse(ev.data);
+                    if (json.type === "BACK") {
+                        // console.log("back", json);
+                        try {
+                            this.queue[json.uuid].func?.call(this, json, this.queue[json.uuid].obj);
+                            delete this.queue[json.uuid];
+                        } catch (err) { }
+                    } else if (json.type === "CLOSE") {
+                        closed = true;
+                    } else if (json.type === "LOG") {
+                        displayLog(json.value);
+                    }
+                }
+                ws.onclose = function (ev) {
+                    closed = true;
+                    popup("An existing connection was forcibly closed by the remote host", 5000);
+                    setTimeout(() => {
+                        window.location.href = "/";
+                    }, 5500);
+                }
+                ws.onopen = function () {
+                    closed = false;
+                    ws.sendx(new wwsFormat("VERIFY", cookies.value), function (json) {
+                        if (!json.value) {
+                            document.cookie = "value=null;";
+                            popup("Please login first...", 2000);
+                            setTimeout(() => {
+                                window.location.href = "/";
+                            }, 2500);
+                        } else {
+                            refreshPlayerList();
+                            setInterval(refreshPlayerList, 5000);
+                            ws.sendx(new wwsFormat("GET_DIR"), function (json) {
+                                Rimspace_Directory = json.value.split("/");
+                                Rimspace_Directory.shift();
+                                refreshFile();
+                                // console.log(Rimspace_Directory);
+                            })
+                        }
+                    });
+                }
+            } else {
+                popup("Please login first...", 2000);
+                setTimeout(() => {
+                    window.location.href = "/";
+                }, 2500);
+            }
+        } else {
+            popup("Please login first...", 2000);
+            setTimeout(() => {
+                window.location.href = "/";
+            }, 2500);
+        }
+    }
+</script>
+
+
+</html>

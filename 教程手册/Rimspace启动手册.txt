@@ -1,0 +1,55 @@
+﻿Rimspace WSServer 帮助手册
+一、安装教程
+    1.Windows
+		访问该链接下载并安装环境https://nodejs.org/en/download/
+		安装完成后运行cmd执行"node -v"，若提示版本号则已安装成功
+	2.手机
+		下载Termux软件
+		执行如下命令
+		sed -i 's@^\(deb.*stable main\)$@#\1\ndeb https://mirrors.tuna.tsinghua.edu.cn/termux/apt/termux-main stable main@' $PREFIX/etc/apt/sources.list
+		apt update && apt upgrade
+		apt install git nodejs -y
+		安装完成后运行cmd执行"node -v"，若提示版本号则已安装成功
+		若为手动安装请在软件管理中启用termux的存储权限
+		
+	环境安装完成后，下载并解压群文件的Rimspace压缩包并复制解压产生的文件夹的路径
+	进入终端执行cd [路径]
+	最后执行node main.js即可运行(按住Ctrl + C即可退出)
+	
+	注意: 若对速度有较高要求，请尽量使用同一设备开启Rimspace与Minecraft，以避免因网络连接不良而产生的延迟、丢包等问题
+
+二、登陆教程
+	启动成功后，若首次启动Rimspace会要求您先注册或登陆
+	此时执行help命令可查看帮助
+	注册的命令为reg <密钥> <用户名> <密码>
+	登陆的命令为login <UUID> <密码>
+                或login2 <用户名> <密码>
+	首次登陆/注册成功后将提示您账号UUID，建议截图或复制保存
+	随后系统将在主文件夹内生成自动登陆文件(user.json)，文件内包含您的UUID及密码，请保存好此文件。此后若再次启动系统将会使用该文件内的信息自动登陆
+	登陆成功后可在后台执行help查看后台帮助页面
+
+三、配置文件 (config.json)
+	port: 端口号, 决定了服务监听的端口
+	diskLog: 是否将日志记录保存在磁盘上 (true: 是; false: 否)
+	maxError: 最大报错限制, 报错数量超出该值后Rimspace将自动退出,填写-1以禁用
+	mcwsIpv4: Ipv4地址白名单 (Minecraft)
+	webIpv4: Ipv4地址白名单 (网页)
+	ConsolePassword: 网页界面后台密码
+	maxPosEach: 单个玩家最大坐标数量
+	
+四、网站后台
+	默认地址为http://localhost:3000/
+	登陆密码为配置文件中的 ConsolePassword
+
+五、指令格式(后台命令以及游戏内指令均采用本格式)
+	[主命令] [项1] [项2...] -选项=值
+	-----------------------------------
+	>选项可置于命令中的任何位置
+	>若命令中包含空格，请将其用英文双引号包裹
+	例: cmd --mode=force steve --uuid="abc def 012 345" ( 等价于 cmd steve --uuid="abc def 012 345" --mode=force )
+	
+六、连接
+	启动成功后，可在Rimspace命令窗口输入'ip'查询本地地址，在游戏内执行/connect [地址]:[端口]进行连接
+	在游戏内输入"help"可查询所有游戏内命令的帮助页面
+	
+	注意: 若需在服务器内使用，请先在单人世界连接Rimspace，接着退出单人世界(不要退出游戏)，最后进入服务器即可

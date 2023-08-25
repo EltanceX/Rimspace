@@ -1,0 +1,79 @@
+Rimspace 控制台命令帮助手册
+v0.1.0.0
+
+
+任何控制台命令都包含其独立的帮助页面
+使用'help'以调出总帮助页面
+使用'[命令] --help'以查看该命令的帮助页面
+
+status               显示服务器状态
+       help          帮助界面
+       例: status
+
+ip                   显示可用的本地IP地址
+   help              帮助界面
+   例: ip
+
+kick <ID | UUID>     踢出一个连接至Rimspace的玩家
+     help            帮助界面
+    选项: -f --force 强制踢出模式
+    选项: -b --bound 踢出已绑定至控制台的玩家
+    例: kick 0
+    例: kick 0 -f
+
+kickall              踢出所有连接至Rimspace的玩家
+        help         帮助界面
+        例: kickall
+
+bind <ID | UUID>     将一个玩家绑定至控制台，ID或UUID留空则绑定上一个连接的玩家
+     help           帮助界面
+     view           查看已绑定的玩家
+     unbind         解除对已绑定玩家的绑定
+    例: bind 0
+    例: bind
+    例: bind view
+    例: bind unbind
+
+version              显示Rimspace的当前版本
+        help         帮助界面
+        例: version
+
+km                   启用键盘模式（可使用键盘控制已绑定玩家的移动或其他操作）
+   help              帮助界面
+   例: km
+
+exec                 以已绑定玩家的身份在游戏内运行一条游戏命令
+     help            帮助界面
+     例: exec kill @e
+
+wexec                以已绑定玩家的身份在游戏内运行一条Rimspace命令
+      help           帮助界面
+      例: wexec pos add
+
+rc                   重新加载config.json配置文件(该操作将刷新Rimspace的端口号以及语言文件等)
+   help              帮助界面
+    例: rc
+
+ol info              查看账号信息
+   help              帮助界面
+   rename <new name> 重命名(花费20银币)
+   pwd <new pwd>     重置密码(每小时一次)
+    例: ol info
+    例: ol rename Steve114514
+    例: ol pwd 1919810
+
+protocol             展示Rimspace用户协议
+         help        帮助界面
+         例: protocol
+
+exit                 退出Rimspace (等价于stop, quit)
+     help            帮助界面
+     例: exit
+
+stop                 退出Rimspace (等价于exit, quit)
+     help            帮助界面
+     例: stop
+
+quit                 退出Rimspace (等价于exit, stop)
+     help            帮助界面
+     例: quit

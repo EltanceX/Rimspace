@@ -1,0 +1,654 @@
+{
+	"lang header": {
+		"version": "0.1.0.0",
+		"translator": "UCKET"
+	},
+	"start": {
+		"finish": "启动成功",
+		"listen": "RimSpace Websocket服务器已开放在",
+		"help": "输入 'help' 查看帮助页面",
+		"ip -a": "输入 'ip' 查看你的ip地址",
+		"webListen": "点击查看网页控制台"
+	},
+	"login": {
+		"fail": "登录失败，请重试",
+		"success": "登录成功，您的用户数据保存在 'user.json'",
+		"welcome": "欢迎来到 Rimspace",
+		"error": {
+			"emptyfile": "文件 'user.json' 空, 请使用login或login2手动登录",
+			"ECONNREFUSED": "重试: 无法与公共文件服务器建立连接",
+			"lost": "与登录认证服务器的连接已丢失",
+			"pwd length": "密码长度范围为 3 到 20 ！",
+			"name length": "名字的长度范围是 3 到 20 ！"
+		}
+	},
+	"web service": {
+		"error": {
+			"static": "加载静态网页时出错！"
+		}
+	},
+	"exit": {
+		"prompt": {
+			"stop": "正在停止服务器...",
+			"disconnect": "正在断开客户端...",
+			"ingame": "远程主机强制关闭现有连接",
+			"close websocket": "正在关闭websocket ...",
+			"save data": "保存运行时数据",
+			"stopped": "保存运行时数据"
+		}
+	},
+	"plugin": {
+		"load": "加载",
+		"error": {
+			"manifest": "加载失败",
+			"fail": "加载插件失败",
+			"lang": "找不到插件的语言依赖",
+			"main": "找不到 PLUGIN 文件",
+			"runtime": "加载插件时出错"
+		}
+	},
+	"console": {
+		"help": {
+			"title": "帮助页面",
+			"detail tip": "详细帮助请使用 '[命令] -h', '[命令] --help'",
+			"list": "所有控制台命令列表",
+			"kick": "踢出玩家",
+			"kickall": "强制踢出所有玩家",
+			"ip": "ip地址信息",
+			"bind": "绑定玩家",
+			"status": "服务器状态",
+			"version": "服务器版本",
+			"km": "键盘模式",
+			"exec": "以已绑定玩家的身份在游戏内运行一条游戏命令",
+			"wexec": "以已绑定玩家的身份在游戏内运行一条ws命令",
+			"rc": "重新加载config.json",
+			"ol": "线上服务",
+			"stop": "停止运行 Rimspace 服务"
+		},
+		"km": {
+			"help": {
+				"expound": "启用键盘模式",
+				"--help": "帮助页面",
+				"--player": "指定操作对象（默认：@s）"
+			},
+			"operation set": "操作玩家被设置为",
+			"start": {
+				"operation": "操作: WASD NM ↑↓←→ / C",
+				"target": "目标玩家",
+				"exit": "按ctrl+c退出键盘模式"
+			},
+			"off": "键盘模式关闭",
+			"on": "键盘模式开启",
+			"error": {
+				"bind": "没有绑定玩家",
+				"option": "无效参数.请使用 'km -h' 查看帮助"
+			}
+		},
+		"ip": {
+			"help": {
+				"--help": "帮助页面"
+			},
+			"title": "所有可用的本地地址",
+			"tip": "列出本地ip"
+		},
+		"list": {
+			"help": {
+				"expound": "列出在线玩家",
+				"list": "列出服务器上的所有玩家",
+				"detail": "列出玩家详细信息",
+				"help": "帮助页面",
+				"-h": "帮助页面"
+			},
+			"error": {
+				"option": "无效参数.请使用 'list -h' 查看帮助"
+			}
+		},
+		"bind": {
+			"help": {
+				"bind": "绑定玩家",
+				"expound": "绑定最后连接的玩家",
+				"view": "查看板绑定的玩家",
+				"unbind": "解绑当前玩家的绑定",
+				"help": "帮助页面",
+				"-h": "帮助页面"
+			},
+			"error": {
+				"not exist": "玩家不存在",
+				"not bound": "没有玩家绑定",
+				"no connection": "上次连接无效.请使用 'bind --help' 查看帮助",
+				"option": "无效参数.请使用 'bind -h' 查看帮助"
+			},
+			"bound last": "绑定最后连接的玩家",
+			"unbound all": "解绑全部玩家",
+			"auto unbind": "自动解绑"
+		},
+		"kick": {
+			"force kicked": "强制踢出",
+			"not exist": "不存在该玩家",
+			"help": {
+				"kick": "从 Rimspace 踢出一个玩家",
+				"--help": "帮助页面",
+				"--bound": "踢出绑定的玩家",
+				"--force": "强制踢出模式"
+			},
+			"error": {
+				"bound": "没有绑定玩家",
+				"option": "无效参数.请使用 'kick -h'查看帮助",
+				"exist": "玩家不存在"
+			},
+			"kick": "正在尝试踢出... (如果踢出失败,请添加 '--force' 参数)"
+		},
+		"kickall": {
+			"help": {
+				"title": "kickall *帮助页面",
+				"kickall": "强制踢出所有连接到rimspace的玩家"
+			}
+		},
+		"exec": {
+			"help": {
+				"title": "exec *帮助页面",
+				"exec": "以已绑定玩家的身份在游戏内运行一条游戏命令"
+			}
+		},
+		"wexec": {
+			"help": {
+				"title": "wexec *帮助页面",
+				"wexec": "以已绑定玩家的身份在游戏内运行一条Rimspace命令"
+			}
+		},
+		"ol": {
+			"help": {
+				"title": "ol *帮助页面",
+				"help": "帮助页面",
+				"info": "显示用户信息",
+				"rename": "重命名你的账户名 (20 银币)",
+				"pwd": "重置密码（每小时一次）"
+			},
+			"rename": {
+				"error": "用户名长度在 4 到 20 个字符之间",
+				"success": "您的名字已经改名为",
+				"cost": "重命名费用"
+			},
+			"pwd": {
+				"error": "用户密码长度在 4 到 20 个字符之间",
+				"success": "密码修改成功",
+				"saved": "您的密码保存在./user.json"
+			}
+		},
+		"reg": {
+			"illegal length": "用户名和密码在 4 到 20 个字符之间",
+			"connection error": "未连接到服务器",
+			"try again": "注册失败，请重试",
+			"success": "注册成功，你的UUID为",
+			"tip": "您的登录信息已保存在./user.json"
+		},
+		"login": {
+			"illegal length": "用户名和密码在 4 到 20 个字符之间",
+			"connection error": "未连接到服务器",
+			"fail": "登录失败，请重试",
+			"success": "登录成功，您的UUID为",
+			"welcome": "欢迎来到 Rimspace",
+			"parameter error": "参数无效"
+		},
+		"help2": {
+			"tip": "---- 登录界面 ----",
+			"reg": "注册一个新账户",
+			"login": "登录现有账户",
+			"login2": "登录现有账",
+			"warn": "用户名和密码在 4 到 20 个字符之间",
+			"exit": "退出 Rimspace",
+			"error": "你还没有登录，请使用 'help' 查看帮助"
+		},
+		"stop": "停止 Rimspace 服务",
+		"status": {
+			"help": {
+				"title": "status *帮助页面",
+				"status": "显示Rimspace服务器状态"
+			}
+		},
+		"rc": {
+			"help": {
+				"title": "rc *帮助页面",
+				"rc": "重新加载 Rimspace 配置"
+			},
+			"complete": "已重新加载 config.json"
+		}
+	},
+	"game": {
+		"welcome": {
+			"0": "§r§f§l§2连接到服务器: §aRS.WS"
+		},
+		"init": {
+			"cpu": "监控服务器 CPU 数据",
+			"mem": "监控服务器延迟数据",
+			"complete": "完成"
+		},
+		"help": {
+			"title": "帮助页面",
+			"task": "任务系统",
+			"ol": "在线系统",
+			"exec": "作为玩家执行命令",
+			"time": "显示当前时间",
+			"pos": "位置系统",
+			"mid": "MIDI 音乐",
+			"export": "导出一个结构",
+			"exportTip": "支持类型: §6Mcfunction §eBdx §aRmst",
+			"import": "导入一个结构",
+			"importTip": "支持结构: §6Mcfunction §eBdx §5Schematic §3Sd §bRmst",
+			"pixel": "导入像素画",
+			"version": "显示 Rimspace 版本",
+			"worldchat": "世界聊天",
+			"repair": "修复导入的结构",
+			"tip": "更详细的帮助请使用 '[cmd] --help'",
+			"lineto": "绘制线段",
+			"replay": "回放",
+			"track": "跟踪目标",
+			"path": "加载路径并获取文件 ID",
+			"subtitle": "创建 §c滚§6动§e标§a题"
+		},
+		"task": {
+			"help": {
+				"title": "task  *帮助页面",
+				"break": "清除一个任务",
+				"bkall": "清除所有任务",
+				"pause": "暂停任务",
+				"display": "任务模式",
+				"-debug": "Debug 模式",
+				"tip": "TaskTitle>> dps: Title刷新率; cps: 命令执行频率",
+				"option": "task *参数"
+			},
+			"display": {
+				"mode": {
+					"0": "Normal",
+					"1": "Never",
+					"2": "Always"
+				},
+				"show": "任务模式"
+			},
+			"break": {
+				"success": "清除成功",
+				"fail": "没有找到该任务"
+			},
+			"bkall": {
+				"success": "清除成功"
+			},
+			"pause": {
+				"state": {
+					"0": "暂停中",
+					"1": "运行中"
+				},
+				"fail": "没有找到该任务"
+			},
+			"invalid option": "无效参数.请使用 <task -h> 查看帮助",
+			"dazzle": {
+				"on": "§c杀§6马§e特 §5模§c式 §a开§3启",
+				"off": "杀马特模式关闭"
+			}
+		},
+		"exec": {
+			"help": {
+				"title": "exec  *帮助页面",
+				"exec": "在外部执行命令",
+				"option": "exec *参数",
+				"-n": "无回显模式"
+			}
+		},
+		"pos": {
+			"help": {
+				"title": "pos  *帮助页面",
+				"help": "帮助页面",
+				"follow": "跟随模式",
+				"add": "在当前位置添加 pos",
+				"set": "设置 pos 坐标",
+				"tp": "tp到指定坐标",
+				"rm": "移除一个坐标",
+				"rmall": "删除所有保存的坐标",
+				"list": "pos 坐标列表",
+				"save": "保存 pos 坐标到磁盘上",
+				"load": "从磁盘加载 pos 坐标",
+				"delall": "删除磁盘上保存的所有pos 坐标",
+				"option": "pos   *参数",
+				"-h": "帮助页面",
+				"point": "预览保存的坐标",
+				"line": "预览线的坐标",
+				"-p": "显示粒子效果"
+			},
+			"incorrect quantity": "没有保存位置！",
+			"particle": "预览粒子效果",
+			"coor error": "坐标数小于2！",
+			"save": {
+				"fail": "当前保存的坐标为空"
+			},
+			"load": {
+				"fail": "找不到pos 坐标",
+				"loaded": "已加载pos 坐标",
+				"parameter error": "缺少参数：坐标名称"
+			},
+			"delall": "删除所有保存在磁盘上的 pos 坐标",
+			"follow": {
+				"not support": "当前游戏版本不支持此功能！",
+				"stateT": "位置跟随状态",
+				"state": {
+					"on": "开启",
+					"off": "关闭"
+				},
+				"tip": "Pos 跟随模式开启，向你所在位置的坐标射箭\\n再次输入关闭.",
+				"upper limit": "数量超过上限："
+			},
+			"add": "数量超过上限：",
+			"set": {
+				"overwrite": "已被覆盖",
+				"changed": "坐标已改变",
+				"invalid": "无效坐标",
+				"not found": "无效坐标"
+			},
+			"rm": {
+				"deleted": "删除坐标",
+				"deleted last": "删除最后一个坐标"
+			},
+			"rmall": "删除所有坐标",
+			"list": "坐标列表",
+			"invalid option": "无效参数.请使用 'pos -h' 查看帮助",
+			"tp": {
+				"to": "即将传送",
+				"teleported": "传送到",
+				"error": {
+					"exist": "不存在!"
+				}
+			}
+		},
+		"mid": {
+			"help": {
+				"title": "mid  *帮助页面",
+				"help": "帮助页面",
+				"midi": "播放 midi 音乐(默认路径: ./public/ )",
+				"path": "根据文件 ID 播放 MIDI 音乐",
+				"option": "mid   *参数",
+				"-p": "文件路径",
+				"-t": "曲目进度",
+				"note": "注意: §f若播放无声音，请前往市场手动下载缺失的官方音乐包！"
+			},
+			"no file": "您必须指定要播放的文件",
+			"not found": "未找到文件",
+			"bad": "错误的 MIDI 文件",
+			"loaded": "MIDI 已加载",
+			"filename": "文件名",
+			"copyright": "版权",
+			"name": "当前名称",
+			"track": "音轨",
+			"time": "时长",
+			"complete": "一首曲目播放完成"
+		},
+		"export": {
+			"help": {
+				"title": "export  *帮助页面",
+				"speed": "设置速度 (block/s)",
+				"export": "导出结构",
+				"option": "export *参数",
+				"-s": "设置速度",
+				"-t": "设置导出的文件类型（默认： rmst ）",
+				"tip": "支持类型: §6Mcfunction §eBdx §aRmst"
+			},
+			"speed": {
+				"invalid number": "无效数字",
+				"invalid range": "无效数字",
+				"success": "导出速度设置为"
+			},
+			"type error": "不支持的类型",
+			"name error": "文件已存在，请更改文件名",
+			"pos error": "无效的坐标输入",
+			"block error": "无法访问方块,位置:",
+			"file saved": "文件已保存到",
+			"completed": "导出操作完成",
+			"error": {
+				"parameter": "无效参数, 请使用 'export --help'查看帮助."
+			}
+		},
+		"import": {
+			"help": {
+				"title": "import  *帮助页面",
+				"speed": "设置速度 (block/s) (范围: 0~2k)",
+				"import": "导入结构",
+				"path": "根据文件 ID 导入结构",
+				"tip": "支持的文件类型: §o§6Mcfunction §eBdx §5Schematic §3Sd §bRmst",
+				"option": "import *参数",
+				"-p": "设置路径",
+				"-s": "指定导入百分比",
+				"-f": "导入时自动跟随"
+			},
+			"speed": {
+				"invalid number": "无效数字",
+				"invalid range": "无效数字",
+				"success": "导入速度设置为"
+			},
+			"not found": "未找到文件",
+			"pos error": "无效位置",
+			"complete": "导入完成",
+			"bad": "Bad path",
+			"format error": "文件格式错误或损坏！",
+			"unsupport": "不支持的文件格式",
+			"error": {
+				"parameter": "无效参数, 请使用 'import --help'查看帮助",
+				"parse": "解析过程中出现意外错误"
+			},
+			"skip": {
+				"error": {
+					"percentage": "跳过百分比应该在 0% 到 100 % 之间！"
+				},
+				"from": "结构导入进度将开始于"
+			}
+		},
+		"ol": {
+			"help": {
+				"title": "ol  *帮助页面",
+				"list": "列出所有可用的文件分类",
+				"listx": "列出一个类别下的所有文件",
+				"signin": "登录",
+				"buy": "购买文件",
+				"info": "显示您的账户信息",
+				"upload": "上传文件（上传文件将会获得一定数量的银币)",
+				"download": "下载已购买的文件",
+				"delete": "删除已上传的文件",
+				"delete tip": "删除文件会扣双倍银币",
+				"price": "修改购买价格",
+				"option": "ol *参数",
+				"-p": "文件路径"
+			},
+			"server error": "文件路径",
+			"parameter error": "无效参数",
+			"no file": "无效参数",
+			"type error": "无效类型. 请使用 'ol list' 查看所有可用的类型",
+			"invalid option": "无效参数. 请使用 'ol -h' 查看帮助",
+			"list": "列出文件服务器上的所有分类",
+			"buy": "购买 §a成功§f, 银币已扣除",
+			"name error": "无效的文件名",
+			"uname error": "上传的名称无效",
+			"name length error": "文件名最大长度为 30",
+			"des length error": "最大文件描述长度为 50",
+			"file corruption": "上传时出错：文件损坏",
+			"format error": "文件格式错误或损坏！",
+			"unsupported format": "不支持的文件格式",
+			"upload": {
+				"start": "不支持的文件格式",
+				"success": "上传成功",
+				"reward": "您获得了上传奖励",
+				"price": "您上传文件的价格被自动设置为",
+				"tip": "要更改价格，请使用命令 'ol price'"
+			},
+			"file exists": "下载取消，检测到同名文件",
+			"download": {
+				"start": "下载已开始，请稍等...",
+				"success": "下载成功",
+				"save": "文件被保存到"
+			},
+			"delete": "文件删除 §a成功§f, 银币已扣除",
+			"price": {
+				"range error": "价格不能小于 0 或大于 10000",
+				"success": "价格修改成功"
+			},
+			"signin": "登录成功，银币为"
+		},
+		"pixel": {
+			"help": {
+				"title": "pixel  *帮助页面",
+				"pixel": "导入一张像素画",
+				"path": "根据文件 ID 绘制像素画",
+				"speed": "设置像素画的生成速度 ( block/s )",
+				"option": "pixel   *参数",
+				"-p": "文件路径（默认：./public/）",
+				"-o": "设置像素生成方向",
+				"-i": "指定坐标索引",
+				"-m": "设置滤镜",
+				"support": "滤镜: normal, contrast, pale, purityc, disorder, hell",
+				"-g": "高斯模糊",
+				"-r": "设置高斯模糊半径（仅高斯模式，默认值：3）",
+				"-s": "设置高斯模糊 sigma (仅高斯模式, 默认值: 1)",
+				"-f": "自动跟踪进度",
+				"-c": "设置像素绘制生成的块大小(默认值: 32)",
+				"tip": "有关 '像素画滤镜' 的更多信息，请使用命令 'pixel mhelp'"
+			},
+			"mhelp": {
+				"title": "像素画 '--mode' 滤镜帮助",
+				"support": "支持: §6normal, contrast, pale, gauss, purityc, disorder, hell",
+				"normal": "正常图片",
+				"contrast": "反色图片",
+				"pale": "黑白图片",
+				"puprityc": "反色(纯色)图片",
+				"disorder": "错乱图片",
+				"hell": "地狱图片",
+				"gauss": "高斯模糊",
+				"-g": "高斯模糊滤镜：§b生成高斯模糊图片（选项：-r，-s）",
+				"tip": "高斯模式允许与其他模式共同使用"
+			},
+			"speed": {
+				"number error": "无效数字",
+				"range error": "速度范围必须在 0 到 1000 之间",
+				"success": "像素图片生成速度设置为"
+			},
+			"facing error": "无效朝向, 朝向: x / y / z",
+			"follow": "跟随模式: §2启用",
+			"follow height": "跟随高度",
+			"pos error": "无效位置",
+			"format error": "仅支持 PNG 和 GIF 格式",
+			"mode error": "无效滤镜",
+			"radius": "高斯模糊 - 半径",
+			"sigma": "高斯模糊 - Sigma",
+			"bad path": "错误图像路径",
+			"start": "像素画绘制开始",
+			"complete": "像素画绘制完成",
+			"error": {
+				"parameter": "无效参数, 请使用 'pixel --help' 查看帮助"
+			}
+		},
+		"worldchat": {
+			"help": {
+				"title": "worldchat  *帮助页面",
+				"send": "发送一条世界聊天消息",
+				"send2": "发送一条世界聊天消息"
+			}
+		},
+		"repair": {
+			"help": {
+				"title": "repair  *帮助页面",
+				"help": "查看帮助",
+				"repair": "正在尝试修复",
+				"repairx": "设置修复范围",
+				"state": "查看修复状态",
+				"rm": "删除记录",
+				"option": "repair   *参数",
+				"-h": "查看帮助",
+                "tip" : "提示：最大存储限制可以在配置文件中更改"
+			},
+			"range": "修复范围",
+			"complete": "修复任务完成",
+			"error": {
+				"data": "读取数据时出错,任务中断"
+			}
+		},
+		"replay": {
+			"help": {
+				"title": "replay  *帮助页面",
+				"help": "帮助页面",
+				"replay": "开始 replay",
+				"option": "replay   *参数",
+				"-h": "帮助页面",
+				"-s": "设置命令执行速度 (默认值:20)",
+				"-a": "设置精度 (默认值:10)",
+				"-n": "不作为任务运行",
+				"-c": "曲线模式"
+			},
+			"coor error": "'replay curve' 模式需要至少 4 个保存的坐标",
+			"coor error 2": "'replay' 命令需要至少 2 个保存的坐标",
+			"complete": "'replay' 任务完成"
+		},
+		"lineto": {
+			"help": {
+				"title": "lineto  *帮助页面",
+				"help": "帮助页面",
+				"lineto": "画一条线",
+				"option": "lineto   *参数",
+				"-b": "设置使用的方块",
+				"-d": "设置方块数据值",
+				"-c": "曲线模式",
+				"-r": "严格线路模式"
+			},
+			"curve coor error": "曲线模式需要 4 个保存的坐标",
+			"rugged coor error": "Rugged 模式需要至少 2 个保存的坐标",
+			"lineto coor error": "Lineto 需要至少 2 个保存的坐标",
+			"complete": "绘制完成！"
+		},
+		"track": {
+			"help": {
+				"title": "track  *帮助页面",
+				"pos": "通过 ID 追踪坐标",
+				"selector": "通过选择器跟踪实体",
+				"option": "track  *参数",
+				"-p": "指定粒子效果名称",
+				"-l": "指定粒子显示的最大长度",
+				"-h": "查看帮助"
+			},
+			"length error": "粒子长度范围从 1 到 100",
+			"len": "粒子长度",
+			"selected": "位置选择",
+			"not exist": "不存在！",
+			"unexpected error": "客户端返回的参数不正确！",
+			"invalid selector": "无效选择器！",
+			"invalid parameter": "无效参数！",
+			"selector": "选择器",
+			"error": {
+				"parameter": "无效参数, 请使用 'track --help' 查看帮助"
+			}
+		},
+		"path": {
+			"help": {
+				"title": "path  *帮助页面",
+				"path": "加载一个路径，方便其他命令的执行",
+				"option": "path  *参数",
+				"-h": "查看帮助"
+			},
+			"error": {
+				"init": "您必须先使用 'path' 命令获取文件 ID",
+				"id": "不存在！",
+				"file": "路径ID对应的文件不存在！",
+				"exist": "文件不存在或无权读取！"
+			},
+			"loading": "加载路径 id",
+			"load": "加载路径",
+			"saved": "路径已保存！"
+		},
+		"subtitle": {
+			"help": {
+				"title": "subtitle  *帮助页面",
+				"subtitle": "添加滚动subtitle",
+				"color": "设置subtitle颜色",
+				"option": "subtitle  *参数",
+				"-r": "反转颜色滚动",
+				"-h": "查看帮助"
+			},
+			"error": {
+				"parameter": "无效参数, 请使用 'subtitle --help' 查看帮助",
+				"color": "颜色不能为空！"
+			}
+		}
+	}
+}

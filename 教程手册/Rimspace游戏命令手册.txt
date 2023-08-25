@@ -1,0 +1,321 @@
+Rimspace 游戏命令帮助手册
+v0.1.0.1
+
+任何游戏命令都包含其独立的帮助页面
+使用'help'以调出总帮助页面
+使用'[命令] --help'以查看该命令的帮助页面
+
+
+
+task                任务系统
+     help           帮助界面
+     break <TaskID> 结束一个任务
+     bkall          结束所有任务
+     pause <TaskID> 暂停一个任务
+     display        切换显示模式（支持的模式：Normal，Never，Always）
+    选项: -d --debug 调试
+    选项: -h --help  帮助界面
+
+    例: task break 0
+    例: task bkall
+    例: task display
+    例: task -d=timer -l=80 -t=60
+
+
+exec <Command>      执行一条游戏命令
+     help           帮助界面
+    例: exec kill @e
+
+
+time                   显示当前系统时间
+    例: time
+
+
+pos                    坐标系统
+    help               帮助界面
+    follow             切换跟踪模式(该模式允许玩家通过射箭向坐标列表中添加当前位置的坐标)
+    add                将当前坐标添加至坐标列表
+    set                将坐标列表中ID为0的坐标的数据替换为当前位置的坐标数据
+    set <PosID>        将坐标列表中ID为PosID的坐标的数据替换为当前位置的坐标数据
+    set <PosID> <x> <y> <z> 将坐标列表中ID为PosID的坐标的数据替换为指定的数据
+    tp <PosID>         传送至坐标列表中ID为PosID的坐标
+    rm <PosID>         移除坐标列表中ID为PosID的坐标
+    rmall              清空坐标列表
+    list               列出坐标列表中所有的坐标的位置及ID
+    preview point      以点的形式预览坐标列表中所有的坐标
+    preview line       以线的形式预览坐标列表中所有的坐标
+    save [Name]        将坐标列表中的所有坐标保存在文件名为Name的磁盘文件中
+    load [Name]        从磁盘中加载文件名为Name的坐标列表文件
+    delall             删除所有已保存的坐标文件
+    选项: -h --help    帮助界面
+    选项: -p=Particle --particle    指定preview的粒子效果
+
+    例: pos follow
+    例: pos add
+    例: pos set
+    例: pos set 0
+    例: pos set 0 100 255 100
+    例: pos tp 0
+    例: pos rm 0
+    例: pos rmall
+    例: pos list
+    例: pos preview line
+    例: pos preview point
+    例: pos preview line --particle=minecraft:villager_happy
+    例: pos save mypos
+    例: pos load mypos
+    例: pos delall
+
+
+replay                 开始电影视角回放(至少需要坐标列表中两个已保存的坐标)
+       help            帮助界面
+      选项: -h --help  帮助界面
+      选项: -c --curve             以曲线的路径进行回放(需要且仅需要四个pos坐标点)
+      选项: -s=SPEED --speed       指定回放的速度(默认20，越大速度越快)
+      选项: -a=ACCURACY --accuracy 指定路径的精度(默认10，越大玩家传送的精度越高，耗时越长)
+      选项: -n --notask            不使用任务模式(仅调试用，不推荐更改此选项)
+    
+    例: replay
+    例: replay -c
+    例: replay -s=20 -a=10
+
+
+lineto                 描点连线(至少需要坐标列表中两个已保存的坐标)
+       help            帮助界面
+      选项: -h --help        帮助界面
+      选项: -b=BLOCK --block 指定线段使用的方块
+      选项: -d=DATA --data   指定方块的特殊值
+      选项: -c --curve       以曲线模式进行绘制(需要且仅需要四个pos坐标)
+      选项: -r --rugged      应用较为崎岖的线段绘制模式
+
+     例: lineto
+     例: lineto -b=diamond_block -d=0
+     例: lineto --block=diamond_block --data=0 --curve
+     例: lineto --rugged
+
+
+mid <File name>        播放MIDI音乐
+    path <FileID>      通过文件ID快捷播放音乐
+    help               帮助界面
+   选项: -p=PATH --path   指定文件夹路径(默认为./public/)
+   选项: -t=TRACK --track 指定要播放的音轨(不指定则全部播放)
+
+   例: mid mymusic.mid
+   例: mid path 0 
+   例: mid mymusic.mid -p=./public/
+   例: mid mymusic.mid -t=0
+
+
+export <File name>     导出一个结构(需要坐标列表中前两个已保存的坐标，坐标需为建筑结构的对角线)(文件保存路径为./public/)
+       help                            帮助界面
+       speed <Speed>                   指定导出的速度(block/s，单位方块每秒)
+       <File name> <PosID.A> <PosID.B> 手动指定两个坐标导出结构
+       选项: -t=TYPE --type             指定导出的文件格式(目前支持的格式: rmst(默认), bdx, mcfunction)
+
+       例: export mystructure
+       例: export mystructure --type=bdx
+       例: export speed 200
+       例: export mystructure 0 1
+
+
+import <File name>     导入一个结构(要求坐标列表中第一个坐标)
+                       现在支持给格式:   rmst,
+                                        mcfunction,
+                                        schematic,
+                                        bdx,
+                                        sd
+       help            帮助界面
+       speed <Speed>   设定导入速度(block/s，单位方块每秒)
+       <File name> <PosID.A> 手动指定一个坐标导入结构
+       path <File ID>  通过文件ID快捷导入文件
+	   follow on [Height] 开启跟随模式
+	   follow off         关闭跟随模式
+       选项: -p=Path --path        指定文件夹路径(默认为./public/)
+       选项: -s=SkipPercent --skip 跳过部分结构
+
+      例: import mystructure.rmst
+      例: import mystructure.schematic 0
+      例: import path 0
+      例: import mystructure.bdx -p=./public/ -s=50
+      例: import mystructure.sd -s=10
+
+    
+version                显示Rimspace的版本号
+
+
+pixel <File name>      绘制像素画(支持PNG格式和GIF格式)(要求坐标列表中第一个坐标)
+      help             帮助界面
+      path <File ID>   通过文件ID快捷导入文件
+      speed <Speed>    设定绘制速度(block/s，单位方块每秒)
+     选项: -p=PATH --path           指定像素画图片的路径(默认: ./public/)
+     选项: -o=x|y|z --orientation   指定像素画的朝向(x / y / z)(默认y)
+     选项: -i=PosID --index         手动指定一个坐标绘制像素画
+     选项: -m=MODE --mode           指定绘制模式
+                                    受支持的模式: normal(正常,默认), contrast(反色), pale(灰白), purityc(puprity-c纯粹的), disorder(混乱), hell(地狱)
+     选项: -g --gauss               高斯模糊
+     选项: -r=RADIUS --radius       高斯模糊radius值
+     选项: -s=sigma --sigma         高斯模糊sigma值
+     选项: -f[=Height]  --follow    自动跟随模式(若未指定Height，则Height高度默认50)
+     选项: -c=ChunkSize --chunksize 绘制的单个区块大小(默认32)
+
+     例: pixel myimg.png
+     例: pixel path 0
+     例: pixel myimg.png -m=gauss -r=5 -s=1
+     例: pixel myimg.png -m=pale -f=50 -c=32
+     例: pixel myimg.png -p=./public/ -c=16 -m=hell
+     例: pixel myimg.png -i=0
+     例: pixel myimg.png -f
+
+
+ol                        在线系统
+   list                   列出所有文件类型
+   list <Type> <Page>     列出文件类型中的文件
+   signin                 签到
+   buy <Type> <Name>      解锁一个在线文件
+   info                   显示账号信息
+   upload <FileName> <NameToUpload> <UploadType> <Description> 上传一个文件
+   download <Type> <Name> 下载一个已解锁的文件
+   delete <Type> <Name>   删除一个已上传的文件
+   price <Type> <Name> <Price> 设置文件的价格
+   选项: -p=PATH --path   指定上传/下载时的文件夹路径
+
+   例: ol list 官方 0
+   例: ol buy 官方 music.mid
+   例: ol upload myMidi.mid name.mid 官方 "This is a midi file"
+   例: ol list
+   例: ol download MIDI myMidi.mid
+   例: ol delete MIDI myMidi
+   例: ol price MIDI myMidi 100
+   例: ol info
+   例: ol signin
+
+
+help                   列出所有命令
+    例: help
+
+
+worldchat              世界聊天系统
+          help         帮助界面
+         例: worldchat help
+
+
+！<message>             发送一条世界信息
+!<message>             发送一条世界信息
+  例: ！hello
+  例: !hello
+
+
+repair                  万能修复系统: 修复所有导入时丢失的方块
+       help             帮助界面
+       <start> <end>    修复指定范围的方块
+       state            列出修复系统的状态
+       rm <start> <end> 删除指定范围内的方块错误记录
+
+      例: repair
+      例: repair 0 1000
+      例: repair state
+      例: repair rm 0 1000
+
+
+track                     追踪器
+      help                帮助界面
+      pos <PosID>         追踪一个指定的坐标
+      selector <Selector> 追踪实体(选择器)
+      选项: -p=Particle  --particle    指定追踪显示的粒子效果
+      选项: -l=Length    --length      指定追踪粒子的最大长度(默认5)
+
+     例: track pos 0
+     例: track selector @a[name=Steve114514]
+     例: track selector @e[type=item,name=dirt]
+     例: track pos 0 -p=minecraft:basic_flame_particle -l=10
+
+
+path <Folder Path>     快捷路径系统: 保存和列出路径(默认: ./public/)
+     help              帮助界面
+
+    例: path ./public/
+    例: path
+    例: path ./myfolder/
+
+
+subtitle <Title>       添加一个小标题
+         help          帮助界面
+         color [Color1, [Color2,...]] 设置滚动的颜色
+         选项: -r  --reverse           反转滚动
+
+        例: subtitle hello world
+        例: subtitle color §c §6 §e §a §3 §b §5
+        例: subtitle hello world -r
+        例: subtitle abcdefg
+
+
+ping <Address>         Ping一个远程服务器
+     help              帮助界面
+	 选项: -t          持续Ping
+	 
+	例: ping bing.com
+	例: ping bing.com -t
+	
+	
+agent                  吉祥物
+     help              帮助界面
+    此帮助页面来源于Minecraft WIKI
+     agent <command: AgentDirectionCommand> <direction: AgentDirection>
+     agent <command: AgentItemCommand> <slotNum: int>
+     agent <command: AgentCommand>
+     agent collect <item: Item>
+     agent collect all
+     agent drop <slotNum: int> <quantity: int> <direction: AgentDirection>
+     agent place <slotNum: int> <direction: AgentDirection>
+     agent setitem <slotNum: int> <item: Item> <count: int> <aux: int>
+     agent tp [destination: x y z] [y-rot: float]
+     agent tp <destination: x y z> facing <lookAtPosition: x y z>
+     agent transfer <slotNum: int> <quantity: int> <dstSlotNum: int>
+     agent turn <direction: AgentTurnDirection>
+
+    参数
+     command: AgentDirectionCommand包括move|destroy|detect|attack|detectredstone|dropall|inspect|inspectdata|interact|till
+     command: AgentItemCommand包括getitemcount|getitemspace|getitemdetail
+     command: AgentCommand包括create|getposition
+     direction: AgentDirection包括up|down|forward|back|left|right
+     direction: AgentTurnDirection包括left|right
+     slotNum: int
+
+    例:
+    agent create
+    agent tp
+    agent turn left
+
+
+closechat              关闭聊天栏
+          help         帮助界面
+
+          例: closechat
+
+
+querytarget <victim: target> 获取目标信息
+            help             帮助界面
+
+            例:
+            querytarget @s
+            querytarget @e[type=pig]
+
+
+listd [details: ListDetails] 详细的玩家列表信息
+      help                   帮助界面
+
+      例:
+      listd
+
+
+close                   断开与Rimspace服务器的连接
+      help              帮助界面
+	  选项: -f --force  强制断开连接
+	  
+	  例:
+	  close
+	  close --force
+	  
+	  
+
+Coming soon...         Coming soon...
