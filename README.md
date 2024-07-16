@@ -1,4 +1,4 @@
-# OpenRimspace
+# Rimspace Project
 
 Rimspace - Minecraft Bedrock Websocket open-source software
 
